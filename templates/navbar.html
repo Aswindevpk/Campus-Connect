@@ -1,0 +1,59 @@
+{% load static %}
+<header>
+    <!-- navbar  -->
+  <nav id="navbar" class="navbar sticky-top navbar-expand-sm ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <div id="navbarBranding" class="row">
+          <img src="{% static '/images/logo_devagiri.svg' %}" alt="" style="width: 5rem;">
+          <div class="col p-0">
+            <h4 class="mb-0 ml-5">Devagiri Campus</h4>
+            <p class="h6 mb-0">powered by <span>BCA<sup>21-24</sup></span></p>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="true"
+        data-bs-target="#navbarMenu" tabindex="-1">
+        <ion-icon name="reorder-three-outline" size="large"></ion-icon>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarMenu">
+        <ul id="navLinks" class="navbar-nav">
+          <li class="nav-item col-xl-4">
+            <a class="nav-link" href="#carousel">Home</a>
+          </li>
+          <li class="nav-item col-xl-4">
+            <a class="nav-link" href="#events">Events</a>
+          </li>
+          <li class="nav-item col-xl-4">
+            <a class="nav-link" href="#news">News</a>
+          </li>
+          <li class="nav-item col-xl-4">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
+  <div class="d-flex justify-content-center ">
+    <div class="bottom-bar justify-content-between">
+      <a href="{% url 'blood-donation-admin' %}" class="bottom-bar-link ">
+        <ion-icon name="person-outline" size='large'></ion-icon>
+      </a>
+      <a href="{% url 'home' %}" class="bottom-bar-link"><ion-icon name="home-outline" size='large'></ion-icon></a>
+      <a href="{% url 'blood-donation-admin' %}" class="bottom-bar-link"><ion-icon name="planet-outline" size='large'></ion-icon></a>
+    </div>
+   </div>
+</header>
+
+<script>
+  {% comment %} this is a a fix for the black ouline in the toggler  {% endcomment %}
+  
+  const navbarToggler = document.querySelector('.navbar-toggler');
+
+navbarToggler.addEventListener('click', function() {
+  this.blur();
+});
+
+</script>
+

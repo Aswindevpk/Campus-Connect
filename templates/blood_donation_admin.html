@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between">
+    <h2 class="section-header">BLOOD DONATION</h2>
+    <a href="{% url 'logoutUser' %}">
+        <ion-icon name="log-out-outline" size="large"></ion-icon>
+    </a>
+    
+</div>
+<div class="container mb-5">
+    <form action="" method="post">
+        <div class="form-group row">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-4 ">
+                <label for="">{{field.name}}</label><br>
+                {{field}}
+            </div>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mb-3">
+    <div class="row g-2">
+        {% for bloodreq in bloodreqs %}
+        <div class="col-3 text-center">
+            <div class="p-2 d-flex m-1">
+                <h3>{{bloodreq.bloodGroup}}</h3>
+                <a href="{% url 'bloodreq-del' bloodreq.id %}" class="col-2"
+                    onclick="return confirm('Are you really want to remove {{bloodreq.bloodGroup}}?')"><ion-icon name="trash-outline" size='large'></ion-icon></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container mb-3">
+    <h5>Blood Doners </h5>
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Roll no</th>
+                <th scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bloodDonor in bloodDonors %}
+            <tr>
+                <th scope="row">{{bloodDonor.blood_type}}</th>
+                <td>{{bloodDonor.name}}</td>
+                <td>{{bloodDonor.roll_no}}</td>
+                <td><a href="tel:+91{{bloodDonor.phone}}" target="_blank">+91{{bloodDonor.phone}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+
+{% endblock content %}

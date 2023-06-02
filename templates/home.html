@@ -1,0 +1,201 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class=" align-items-center justify-content-center">
+    <!-- carousel section  -->
+    <div data-aos="fade-down" class="carousel slide carousel-fade col-12 col-md-4 mb-3" data-bs-ride="carousel">
+      <div class="carousel-inner" id="carousel">
+        {% for carousel in carousels %}
+        {% if forloop.first %}
+        <div class="carousel-item active">
+        {% else %}
+          <div class="carousel-item">
+        {% endif %}
+            <img src="/media/{{carousel.image}}" width="100%" height="450vh" >
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+    {% comment %} script for carousel movement {% endcomment %}
+    <script>
+   
+    </script>
+
+  
+    {% if blood_req %}
+    <div  id="blood-donation" class="p-3 col-md-8">
+        <p data-aos="fade-up" class="text-center" >
+            {% for blood in blood_req %}
+            <span class='text-danger'>{{blood.bloodGroup}} </span>
+            {% endfor %}
+             Blood Urgent !</p>
+        <div data-aos="fade-up" class=" text-center">
+          <a  class="btn btn-danger"  href="{% url 'blood-donation-form' %}">Donate now</a>
+        </div>
+    </div>
+    {% endif %} 
+  
+   
+  
+    <!-- daily updates -->
+    {% if events %}
+    <div id="events"  class="col-12 col-md-8">
+      <h2 class="section-header" data-aos="fade-up" >EVENTS</h2>
+      {% for event in events  %}
+      <div data-aos="fade-up" class=" rounded mb-3 " id="events-section">
+        <div  id="eventClick" class="row p-2" data-bs-toggle="collapse" href="#collapse{{event.id}}" role="button"
+          aria-expanded="false" aria-controls="collapseExample">
+          <div data-aos="fade-right" class="col-8" >
+            <ion-icon name="calendar-outline"></ion-icon>
+            <small id="event-date">{{event.date}}</small>
+            <h3 id="event-name">{{event.name}}</h3>
+          </div>
+          <div data-aos="fade-up" class="col-4 text-end ">
+            <ion-icon name="alarm-outline"></ion-icon>
+            <small id="event-time">{{event.time}}</small>
+            <div>
+              <ion-icon name="chevron-down-outline" size="large" ></ion-icon><br>
+            </div>
+          </div>
+        </div>
+        <div class="collapse px-2" id="collapse{{event.id}}">
+          <div id="events-conditions" class="p-0">
+            <p class="m-0 p-0">{{event.description}}</p>
+            <div class="pt-2 pb-2 text-end">
+              
+              <a href="{{event.link}}" target="_blank" class="btn btn-sm text-end">Register now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  <!-- news  -->
+  <div id="news" class="col-12 pb-3 col-md-6">
+    <h2 data-aos="fade-up" class="section-header mb-3">NEWS</h2>
+    {% for news in newses %}
+    <div data-aos="fade-right" class=" row mb-3">
+      <div class="col-6">
+        <h6 id="news-header">{{news.title}}</h6>
+        <p id="news-content" style="white-space: pre-line">{{news.body}}</p>
+        <a  href="{% url 'news' news.id %}" id="news-link">Read More</a>
+      </div>
+      <div data-aos="fade-up" class="col-6">
+        <img id="news-img" src="/media/{{news.image}}" class="rounded" height="160px" alt="">
+      </div>
+    </div>
+    {% endfor %}
+    <div class=" d-flex justify-content-center align-item-center">
+      <a id="news-readmore" href="{% url 'home' %}" >
+        <ion-icon name="arrow-down-circle" size='large'></ion-icon>
+      </a>
+    </div>
+    
+  </div> 
+
+
+  <!-- explore devagiri  -->
+  <div id="explore" class="col-12 mb-3 col-md-6">
+    <div  class='row'>
+      <h2 class="section-header col-9">CAMPUS</h2>
+      <div class='col'> 
+        <div data-aos="fade-right" class="row mt-5 ml-0">
+          <p class="col p-0">swipe</p>
+          <ion-icon class="col p-0 m-0 mt-1" name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+    
+    <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap" id="explore-scroll">
+        {% for explore in explores %}
+      <div class="col-4">
+        <a  href="{% url 'explore' explore.id %}">
+          <div class="card-block card">
+            <img src="/media/{{explore.image}}" alt="" width="100%" height="100px">
+            <h6 class="pt-2">{{explore.name}}</h6>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div> 
+
+
+
+<!-- fest devagiri  -->
+  <div  id="fests" class="col-12 mb-4 col-md-6">
+    <div class='row'>
+      <h2 data-aos="fade-up" class="section-header col-9">FESTS</h2>
+      <div class='col'> 
+        <div data-aos="fade-right" class="row mt-5 ml-0">
+          <p class="col p-0">swipe</p>
+          <ion-icon class="col p-0 m-0 mt-1" name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap">
+        {% for fest in fests %}
+      <div class="col-4">
+        <a href="{% url 'fests' fest.id %}">
+        <div class="card-block card">
+          <img class="" src="/media/{{fest.logo}}" alt="" width="100%" height="100%">
+          <h6 class="pt-2">{{fest.name}}</h6>
+        </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+ <div  id="about" class="col-12 mt-3 mb-3 col-md-8 justify-content-center">
+    <div class="row mb-3">
+      <div class="col-6 pl-2">
+        <h6 class="m-0">BCA</h6>
+        <h6 class="m-0">Devagiri 2021-24</h6>
+      </div>
+      <div class="col-6">
+        <div class="row pt-3">
+          <div class="col">
+            <a href="https://instagram.com/bcasjc?igshid=OGQ2MjdiOTE=">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </div>
+          <div class="col">
+            <a href="tel:+919995338872" target="_blank">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </div>
+          <div class="col">
+            <a href="https://wa.me/9847887293" target="_blank">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+          </div>
+          <div class="col">
+            <a href="">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="m-0">Copyright &copy;2023 Bcasjc</p>
+    </div>
+  </div>
+</div> 
+
+  
+
+
+
+
+
+{% endblock content %}

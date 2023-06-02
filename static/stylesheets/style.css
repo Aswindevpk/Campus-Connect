@@ -1,0 +1,283 @@
+/* global variables  */
+:root {
+    --bg-color:#3e3e82 ;
+    --primary-color: #ffffff;
+    --secondary-color: #FFCD39;
+    --font-para: 'Poppins', serif;
+    --font-title: 'Poppins', serif;
+}
+
+/* .preloader {
+    background: var(--bg-color) url('../preloader/preloader.gif') no-repeat center center ;
+    background-size: 25%;
+    position: fixed;
+    top:0px;
+    left:0px;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out; 
+  }
+  .preloader.hide {
+    opacity: 0;
+  } */
+
+
+/* common properties  */
+body {
+    padding: 0;
+    background: var(--bg-color);
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: var(--font-para);
+    color: var(--primary-color);
+}
+
+.bottom-bar {
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    opacity: 0.8;
+    position: fixed;
+    bottom: 5px;
+    width: 60% !important;
+    margin-left:-10px !important;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    z-index: 999;
+  }
+  .bottom-bar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .bottom-bar a:hover {
+    color: #ccc;
+  }
+ion-icon {
+    color:var(--secondary-color);
+  }
+
+
+
+/* section heading properties  */
+.section-header {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    font-family: var(--font-title);
+    text-align: left;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+
+/* common proporty for the website it applies to the body */
+
+#navbar {
+    display: block;
+    background-color: var(--bg-color);
+    /* position:fixed;
+    margin-bottom: 2rem;
+    top: 0;
+    width: 100%;
+    overflow: hidden; */
+}
+
+/* navigation section */
+.nav-link {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+
+
+#navbarBranding div h4 {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+#navbarBranding div p {
+    color: var(--primary-color);
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+/* carousel section properties */
+/* #carousel{
+} */
+
+#carousel img{
+    border-radius: 10px;
+}
+#blood-donation{
+    margin-top: 2em;
+}
+
+#blood-donation p{
+    color:var(--secondary-color);
+    font-family: var(--font-para);
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+
+
+
+#events{
+    background-color: var(--bg-color);
+}
+
+#events-section{
+    border: 1px solid var(--primary-color);
+}
+
+#event-date{
+    font-family: var(--font-para);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: smaller;
+}
+
+#event-time{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-para);
+    font-weight: 400;
+}
+#event-name{
+    font-family: var(--font-title);
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+#events-conditions{
+    font-family: var(--font-para);
+    font-size: small;
+    padding-left: 1rem;
+    margin: 0px;
+}
+
+#events-conditions a{
+    border-radius: 5px;
+    border: solid var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+#news {
+    background-color: var(--bg-color);
+}
+#news-date{
+    font-family: var(--font-title);
+    font-size: smaller;
+    padding: 0px;
+    margin: 0px;
+}
+#news-header{
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+#news-content{
+    height:60px;
+    color: var(--primary-color);
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-para);
+    font-size: smaller;
+}
+#news-img{
+    width: 100%;
+}
+#news-link{
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-para);
+    font-size: smaller;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+#news-readmore{
+    color:var(--secondary-color);
+    text-decoration: none;
+}
+
+/* explore devagiri */
+#explore {
+    background-color: var(--bg-color);
+}
+#explore a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+#explore-scroll{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.scrolling-wrapper{
+    margin-left: 0px;
+    margin-right: 0px;
+	overflow-x: auto;
+    text-align: center;
+    width: 100%;
+}
+.card-block{
+    padding: 20px;
+	height: 100%;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	border-radius: 15px;
+    padding: 0;
+}
+
+.card-block img{
+    border-radius: 15px 15px 8px 8px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+/* fests */
+
+#fests a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+
+#about{
+    margin-top: 2em;
+    padding-bottom: 1em;
+    color: var(--primary-color);
+}
+
+#about a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+
+
+
+

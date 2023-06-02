@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<nav class="m-3 mt-0" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a   href="/" style="text-decoration: none;">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{fests.name}}</li>
+    </ol>
+  </nav>
+  <div class="m-4">
+    <h2 id="title" class="text-center fw-bold">{{fests.name}}</h2>
+    <div class="col-12 mt-3 d-flex justify-content-center align-items-center">
+      <img id="img" src="/media/{{fests.logo}}" class="rounded-circle mx-auto" height='100px' alt="">
+    </div>
+    <div style="white-space: pre-line" id="body" class="mt-4">{{fests.description}}</div>
+  </div>
+  
+
+  {% endblock content %}
