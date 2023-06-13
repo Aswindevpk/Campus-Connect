@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-udb(ffo@@meyh7j)p=#r12vb(-li&8&$3f+0$r+@z(8u51-3$j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.140.107','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.27.52','localhost','127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

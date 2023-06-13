@@ -75,9 +75,14 @@ def donateBlood(request):
     if request.method == 'POST':
         form = BloodDonationForm(request.POST)
         if form.is_valid():
+            # Convert field values to uppercase
+            form.cleaned_data['name'] = form.cleaned_data['name'].upper()
+            form.cleaned_data['roll_no'] = form.cleaned_data['roll_no'].upper()
+
+            # Save the modified form data
             bloodDonation = form.save()
             bloodDonation.save()
-            return redirect('home')
+            return redirect('blood-donation-form')
 
     context = {'form':form}
     return render(request,'blood_donation_form.html',context)
@@ -94,6 +99,7 @@ def donateBloodAdmin(request):
             bloodreq = form.save()
             bloodreq.save()
             return redirect('blood-donation-admin')
+            
     context = {'form':form, 'bloodDonors':bloodDonors, 'bloodreqs':bloodreqs}
     return render(request,'blood_donation_admin.html',context)
 

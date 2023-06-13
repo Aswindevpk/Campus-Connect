@@ -1,5 +1,5 @@
 from django.db import models
-# from django.core.files.uploadedfile import InMemoryUploadedFile
+
 
 
 
@@ -25,7 +25,7 @@ class Bloodreq(models.Model):
     bloodGroup = models.CharField(max_length=3, choices=[
         ('A+','A+'),('A-','A-'),('B+','B+'),('B-','B-'),('O+','O+'),('O-','O-'),('AB+','AB+'),('AB-','AB-')
     ])
-    contact = models.CharField(max_length=200)
+    contact = models.CharField(max_length=10)
 
     def __str__(self):
         return self.bloodGroup
@@ -58,9 +58,9 @@ class Fests(models.Model):
         return self.name
     
 class BloodDonation(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=25)
     blood_type = models.ForeignKey(Bloodreq, on_delete=models.CASCADE)   
-    roll_no = models.CharField(max_length=10) 
+    roll_no = models.CharField(max_length=8,unique=True) 
     phone = models.CharField(max_length=10)   
 
     def __str__(self):

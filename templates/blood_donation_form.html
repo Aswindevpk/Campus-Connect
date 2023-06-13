@@ -1,5 +1,9 @@
 {% extends 'main.html' %}
 
+{% comment %} for customizing django default form  {% endcomment %}
+{% load widget_tweaks %}
+ 
+
 {% block content %}
 <nav class="m-3 mt-0" aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -8,22 +12,120 @@
     </ol>
 </nav>
 <div id="blood-donation-form" class="m-3 align-center justify-content-center">
-    <h2 class="text-center mt-5">Fill Form To Donate</h2>
-    <p class="text-center p-4">A single drop of blood can make a huge difference</p>
-    <form action="" method="post">
+    <h2 class="mt-5">Fill Form To Donate</h2>
+    <p class="pb-3">A single drop of blood can make a huge difference</p>
+    <form id='donationForm' onsubmit="handleFormSubmission(event)" action="" method="post">
+        
         {% csrf_token %}
-        {% for field in form %}
-        <div class="mb-4 ">
-            <label for="">{{field.name}}</label><br>
-            {{field}}
+       
+        {% if form.roll_no.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.roll_no.errors|first }}
+            </div>
+        {% endif %}
+        
+        <div class="mb-4">
+            {% render_field form.name placeholder="Name" type="text"%}
         </div>
-        {% endfor %}
+        <div class="mb-4">
+            {% render_field form.blood_type type="select"%}
+        </div>
+        <div class="mb-4">
+            {% render_field form.roll_no placeholder="Roll no eg: 21USCA00" type="text"%}
+        </div>
+        <div class="mb-4">
+            {% render_field form.phone placeholder="Mobile Number" type="text"%}
+        </div>
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 
 </div>
+
+
+<style>
+    {% comment %} style for error valedator {% endcomment %}
+    label{
+        color:red;
+        font-size:12px;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function() {
+      // Add custom validation method
+      $.validator.addMethod('rollnoPattern', function(value, element) {
+        return this.optional(element) || /^[0-9]{2}.*[0-9]{2}$/.test(value);
+      }, 'Invalid format.');
+
+
+        $('#donationForm').validate({
+          rules: {
+            name: {
+              required: true,
+              minlength: 3
+            },
+            phone: {
+              required: true,
+              minlength: 10,
+              maxlength: 10,
+              digits: true
+            },
+            roll_no: {
+              required: true,
+              minlength: 8,
+              rollnoPattern:true
+            }
+          },
+          messages: {
+            name: {
+              required: 'Please enter your name.',
+              minlength: 'Name should have a minimum length of 3 characters.'
+            },
+            phone: {
+              required: 'Please enter your phone number.',
+              minlength: 'Phone number should have a length of 10 digits.',
+              maxlength: 'Phone number should have a length of 10 digits.',
+              digits: 'Please enter only digits for the phone number.'
+            },
+            roll: {
+              required: 'Please enter your roll number.',
+              minlength: 'Roll number should have a minimum length of 8 characters.',
+              rollnoPattern: 'Invalid rollnumber'
+            }
+          }
+        });
+    });
+
+    function handleFormSubmission(event) {
+        if ($('#donationForm').valid()){
+              event.preventDefault(); // Prevent the form from submitting normally
+              // Display a confirmation dialog using SweetAlert2
+              Swal.fire({
+                title: 'Are you sure ?',
+                text: 'Are you really willing to donate blood?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, submit!',
+                cancelButtonText: 'No, cancel',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // User clicked "Yes"
+                  // Submit the form
+                  event.target.submit();
+                } else {
+                  // User clicked "No" or closed the dialog
+                  // Do nothing or perform any desired action
+                }
+            });
+        }
+    }
+
+
+</script>
 
 {% endblock content %}
 

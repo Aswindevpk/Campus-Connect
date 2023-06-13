@@ -35,17 +35,17 @@ body {
 }
 
 .bottom-bar {
-    border-radius: 30px;
-    backdrop-filter: blur(10px);
-    opacity: 0.8;
+    /* border-radius: 30px; */
+    /* backdrop-filter: blur(10px); */
+    /* opacity: 0.8; */
     position: fixed;
-    bottom: 5px;
-    width: 60% !important;
+    /* bottom: 5px; */
+    /* width: 60% !important;
     margin-left:-10px !important;
     margin-bottom: 15px;
     padding: 10px;
     text-align: center;
-    z-index: 999;
+    z-index: 999; */
   }
   .bottom-bar a {
     color: #fff;
