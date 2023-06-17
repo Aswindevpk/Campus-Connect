@@ -32,13 +32,14 @@
             <div class="p-2 d-flex m-1">
                 <h3>{{bloodreq.bloodGroup}}</h3>
                 <a href="{% url 'bloodreq-del' bloodreq.id %}" class="col-2"
-                    onclick="return confirm('Are you really want to remove {{bloodreq.bloodGroup}}?')"><ion-icon name="trash-outline" size='large'></ion-icon></a>
+                    onclick="return confirm('Are you really want to remove All details on {{bloodreq.bloodGroup}} Blood Group?')"><ion-icon name="trash-outline" size='large'></ion-icon></a>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 
+{% if bloodDonors %}
 <div class="container mb-3">
     <h5>Blood Doners </h5>
     <table class="table text-light">
@@ -48,6 +49,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Roll no</th>
                 <th scope="col">Phone</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -57,10 +59,46 @@
                 <td>{{bloodDonor.name}}</td>
                 <td>{{bloodDonor.roll_no}}</td>
                 <td><a href="tel:+91{{bloodDonor.phone}}" target="_blank">+91{{bloodDonor.phone}}</a></td>
+                <td><a class="btn btn-primary" href="{% url 'blood-donated-add' bloodDonor.id %}"
+                    onclick="return confirm('Are you really want to Add {{bloodDonor.name}} to Donated List ?')" >+</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div> 
+{% endif %}
+
+
+
+{% if bloodDonatedStudents %}
+
+<div class="container mb-3 mt-5">
+    <h5>Blood Donated Students </h5>
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">blood</th>
+                <th scope="col">Roll no</th>
+                <th scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bloodDonatedStudent in bloodDonatedStudents %}
+            <tr>
+                <th scope="row">{{bloodDonatedStudent.name}}</th>
+                <td>{{bloodDonatedStudent.blood_type}}</td>
+                <td>{{bloodDonatedStudent.roll_no}}</td>
+                <td><a href="tel:+91{{bloodDonatedStudent.phone}}" target="_blank">+91{{bloodDonatedStudent.phone}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+{% endif %}
 
 {% endblock content %}
+
+<script>
+
+</script>

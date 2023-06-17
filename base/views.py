@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Carousel, Bloodreq,Program,News,Explore,Fests,BloodDonation
+from .models import Carousel, Bloodreq,Program,News,Explore,Fests,BloodDonation,BloodDonatedStudents
 from .forms import BloodDonationForm, Bloodreqform ,UserForm
 from datetime import datetime
 from django.contrib.auth.models import User
@@ -75,23 +75,30 @@ def donateBlood(request):
     if request.method == 'POST':
         form = BloodDonationForm(request.POST)
         if form.is_valid():
-            # Convert field values to uppercase
-            form.cleaned_data['name'] = form.cleaned_data['name'].upper()
-            form.cleaned_data['roll_no'] = form.cleaned_data['roll_no'].upper()
-
             # Save the modified form data
             bloodDonation = form.save()
             bloodDonation.save()
-            return redirect('blood-donation-form')
+            return redirect('blood-donation-response')
 
     context = {'form':form}
     return render(request,'blood_donation_form.html',context)
+
+def donateBloodRes(request):
+    return render(request, 'blood_donation_response.html')
+
+def program(request, pk):
+    program_details = Program.objects.get(id=pk)
+    context={
+        'program_details': program_details
+    }
+    return render(request,'news.html',context)
 
 @login_required(login_url='loginpage')
 def donateBloodAdmin(request):
     form = Bloodreqform()
     bloodDonors = BloodDonation.objects.all()
     bloodreqs = Bloodreq.objects.all()
+    bloodDonatedStudents = BloodDonatedStudents.objects.all()
 
     if request.method == 'POST':
         form = Bloodreqform(request.POST)
@@ -100,8 +107,25 @@ def donateBloodAdmin(request):
             bloodreq.save()
             return redirect('blood-donation-admin')
             
-    context = {'form':form, 'bloodDonors':bloodDonors, 'bloodreqs':bloodreqs}
+    context = {
+        'form':form, 
+        'bloodDonors':bloodDonors, 
+        'bloodreqs':bloodreqs,
+        'bloodDonatedStudents':bloodDonatedStudents}
     return render(request,'blood_donation_admin.html',context)
+
+
+@login_required(login_url='loginpage')
+def bloodDonatedAdd(request,pk):
+    bloodDonor = BloodDonation.objects.get(id=pk)
+    newDonation = BloodDonatedStudents()
+    newDonation.name = bloodDonor.name
+    newDonation.blood_type = bloodDonor.blood_type
+    newDonation.roll_no = bloodDonor.roll_no
+    newDonation.phone = bloodDonor.phone
+    newDonation.save()
+    bloodDonor.delete()
+    return redirect('blood-donation-admin')
 
 
 @login_required(login_url='loginpage')

@@ -3,6 +3,9 @@
 
 {% block content %}
 
+<div class="alert alert alert-danger" role="alert">
+  This is a Demo, Stable releasing soon !
+</div>
 
 <div class=" align-items-center justify-content-center">
     <!-- carousel section  -->
@@ -44,7 +47,7 @@
     <!-- daily updates -->
     {% if events %}
     <div id="events"  class="col-12 col-md-8">
-      <h2 class="section-header" data-aos="fade-up" >EVENTS</h2>
+      <h3 class="section-header" data-aos="fade-up" >PROGRAMS</h3>
       {% for event in events  %}
       <div data-aos="fade-up" class=" rounded mb-3 " id="events-section">
         <div  id="eventClick" class="row p-2" data-bs-toggle="collapse" href="#collapse{{event.id}}" role="button"
@@ -66,8 +69,7 @@
           <div id="events-conditions" class="p-0">
             <p class="m-0 p-0">{{event.description}}</p>
             <div class="pt-2 pb-2 text-end">
-              
-              <a href="{{event.link}}" target="_blank" class="btn btn-sm text-end">Register now</a>
+              <a href="{{event.link}}" style="padding:3px;" target="_blank" class="btn btn-sm text-end">Register now</a>
             </div>
           </div>
         </div>
@@ -80,23 +82,18 @@
   <div id="news" class="col-12 pb-3 col-md-6">
     <h2 data-aos="fade-up" class="section-header mb-3">NEWS</h2>
     {% for news in newses %}
-    <div data-aos="fade-right" class=" row mb-3">
-      <div class="col-6">
-        <h6 id="news-header">{{news.title}}</h6>
-        <p id="news-content" style="white-space: pre-line">{{news.body}}</p>
-        <a  href="{% url 'news' news.id %}" id="news-link">Read More</a>
+    <a href="{% url 'news' news.id %}" style="text-decoration: none">
+      <div data-aos="fade-up" class=" row mb-3">
+        <div class="col-6">
+          <h6 id="news-header">{{news.title}}</h6>
+          <p id="news-content" style="white-space: pre-line">{{news.body}}</p>
+        </div>
+        <div data-aos="fade-up" class="col-6">
+          <img id="news-img" src="/media/{{news.image}}" class="rounded" height="160px" alt="">
+        </div>
       </div>
-      <div data-aos="fade-up" class="col-6">
-        <img id="news-img" src="/media/{{news.image}}" class="rounded" height="160px" alt="">
-      </div>
-    </div>
+    </a>
     {% endfor %}
-    <div class=" d-flex justify-content-center align-item-center">
-      <a id="news-readmore" href="{% url 'home' %}" >
-        <ion-icon name="arrow-down-circle" size='large'></ion-icon>
-      </a>
-    </div>
-    
   </div> 
 
 
@@ -104,12 +101,6 @@
   <div id="explore" class="col-12 mb-3 col-md-6">
     <div  class='row'>
       <h2 class="section-header col-9">CAMPUS</h2>
-      <div class='col'> 
-        <div data-aos="fade-right" class="row mt-5 ml-0">
-          <p class="col p-0">swipe</p>
-          <ion-icon class="col p-0 m-0 mt-1" name="chevron-forward-outline"></ion-icon>
-        </div>
-      </div>
     </div>
     
     <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap" id="explore-scroll">
@@ -133,12 +124,6 @@
   <div  id="fests" class="col-12 mb-4 col-md-6">
     <div class='row'>
       <h2 data-aos="fade-up" class="section-header col-9">FESTS</h2>
-      <div class='col'> 
-        <div data-aos="fade-right" class="row mt-5 ml-0">
-          <p class="col p-0">swipe</p>
-          <ion-icon class="col p-0 m-0 mt-1" name="chevron-forward-outline"></ion-icon>
-        </div>
-      </div>
     </div>
     <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap">
         {% for fest in fests %}

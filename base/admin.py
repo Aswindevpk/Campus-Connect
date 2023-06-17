@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Explore,Carousel,Bloodreq,News,Program,BloodDonation,Fests
+from .models import  Explore,Carousel,Bloodreq,News,Program,BloodDonation,Fests,BloodDonatedStudents
 
 # Register your models here.
 
@@ -10,3 +10,4 @@ admin.site.register(Carousel)
 admin.site.register(Program)
 admin.site.register(Fests)
 admin.site.register(BloodDonation)
+admin.site.register(BloodDonatedStudents)

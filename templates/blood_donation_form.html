@@ -12,16 +12,23 @@
     </ol>
 </nav>
 <div id="blood-donation-form" class="m-3 align-center justify-content-center">
-    <h2 class="mt-5">Fill Form To Donate</h2>
-    <p class="pb-3">A single drop of blood can make a huge difference</p>
+    <h2 class="mt-5 text-center">Fill Form To Donate</h2>
+    <p class="pb-3 text-center">A single drop of blood can make a huge difference</p>
     <form id='donationForm' onsubmit="handleFormSubmission(event)" action="" method="post">
         
         {% csrf_token %}
        
-        {% if form.roll_no.errors %}
+        {% if form.errors %}
+          {% if form.phone.errors %}
             <div class="alert alert-danger" role="alert">
-                {{ form.roll_no.errors|first }}
+              {{ form.phone.errors|first }}
             </div>
+          {% endif %}
+          {% if form.roll_no.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ form.roll_no.errors|first }}
+            </div>
+          {% endif %}
         {% endif %}
         
         <div class="mb-4">
