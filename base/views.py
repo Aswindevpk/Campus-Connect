@@ -34,8 +34,8 @@ def creators(request):
 def home(request):
     carousels = Carousel.objects.all()
     blood_req = Bloodreq.objects.all()
-    events = Program.objects.all()
-    newses = News.objects.all()[0:3]  #limits the news to 5
+    events = Program.objects.order_by('date')
+    newses = News.objects.order_by('-created')[0:3]  #limits the news to 5
     explores = Explore.objects.all()
     fests = Fests.objects.all()
 

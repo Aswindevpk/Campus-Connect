@@ -81,6 +81,7 @@
                 <th scope="col">blood</th>
                 <th scope="col">Roll no</th>
                 <th scope="col">Phone</th>
+                <th scope="col">donated on</th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +91,7 @@
                 <td>{{bloodDonatedStudent.blood_type}}</td>
                 <td>{{bloodDonatedStudent.roll_no}}</td>
                 <td><a href="tel:+91{{bloodDonatedStudent.phone}}" target="_blank">+91{{bloodDonatedStudent.phone}}</a></td>
+                <td>{{bloodDonatedStudent.donated_on}}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -46,7 +46,7 @@
   
     <!-- daily updates -->
     {% if events %}
-    <div id="events"  class="col-12 col-md-8">
+    <div id="events"  class="col-12 col-md-8 mb-3">
       <h3 class="section-header" data-aos="fade-up" >PROGRAMS</h3>
       {% for event in events  %}
       <div data-aos="fade-up" class=" rounded mb-3 " id="events-section">
@@ -67,10 +67,15 @@
         </div>
         <div class="collapse px-2" id="collapse{{event.id}}">
           <div id="events-conditions" class="p-0">
-            <p class="m-0 p-0">{{event.description}}</p>
+            <div class="col-10" style="width:360px; display: inline-block;">
+              <p style="font-size:13.3px;">{{event.description}}</p>
+            </div>
+            </div>
+            {% if event.link %}
             <div class="pt-2 pb-2 text-end">
               <a href="{{event.link}}" style="padding:3px;" target="_blank" class="btn btn-sm text-end">Register now</a>
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -78,15 +83,35 @@
     </div>
     {% endif %}
 
+    <!-- communities  -->
+    <div id="communities" class="col-12 mb-3 col-md-6">
+      <div class='row'>
+        <h2 data-aos="fade-up" class="section-header col-9">COMMUNITIES</h2>
+      </div>
+      <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap" id="communities-scroll">
+          {% for explore in explores %}
+        <div class="col-4">
+          <a  href="{% url 'explore' explore.id %}">
+            <div class="card-block card">
+              <img src="/media/{{explore.image}}" alt="" width="100%" height="88px">
+              <h6 class="pt-2">IEDC</h6>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+  
+      </div>
+    </div> 
+
   <!-- news  -->
   <div id="news" class="col-12 pb-3 col-md-6">
     <h2 data-aos="fade-up" class="section-header mb-3">NEWS</h2>
     {% for news in newses %}
     <a href="{% url 'news' news.id %}" style="text-decoration: none">
-      <div data-aos="fade-up" class=" row mb-3">
-        <div class="col-6">
+      <div data-aos="fade-up" class="row mb-3">
+        <div id="news-text" class="col-6">
           <h6 id="news-header">{{news.title}}</h6>
-          <p id="news-content" style="white-space: pre-line">{{news.body}}</p>
+          <p id="news-content">{{news.body}}</p>
         </div>
         <div data-aos="fade-up" class="col-6">
           <img id="news-img" src="/media/{{news.image}}" class="rounded" height="160px" alt="">
@@ -108,7 +133,7 @@
       <div class="col-4">
         <a  href="{% url 'explore' explore.id %}">
           <div class="card-block card">
-            <img src="/media/{{explore.image}}" alt="" width="100%" height="100px">
+            <img src="/media/{{explore.image}}" alt="" width="100%" height="88px">
             <h6 class="pt-2">{{explore.name}}</h6>
           </div>
         </a>
@@ -130,7 +155,7 @@
       <div class="col-4">
         <a href="{% url 'fests' fest.id %}">
         <div class="card-block card">
-          <img class="" src="/media/{{fest.logo}}" alt="" width="100%" height="100%">
+          <img class="" src="/media/{{fest.logo}}" alt="" width="100%" height="88px">
           <h6 class="pt-2">{{fest.name}}</h6>
         </div>
         </a>
@@ -140,11 +165,10 @@
   </div>
 
 
- <div  id="about" class="col-12 mt-3 mb-3 col-md-8 justify-content-center">
+ <div  id="about" class="col-12 mt-4 mb-1 col-md-8 justify-content-center">
     <div class="row mb-3">
       <div class="col-6 pl-2">
-        <h6 class="m-0">BCA</h6>
-        <h6 class="m-0">Devagiri 2021-24</h6>
+        <h6 class="m-0">IEDC Devagiri </h6>
       </div>
       <div class="col-6">
         <div class="row pt-3">
@@ -172,7 +196,7 @@
       </div>
     </div>
     <div class="text-center">
-      <p class="m-0">Copyright &copy;2023 Bcasjc</p>
+      <p class="m-0">Copyright &copy;2023 iedc</p>
     </div>
   </div>
 </div> 

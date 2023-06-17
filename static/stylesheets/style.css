@@ -27,8 +27,8 @@ ion-icon {
 
 /* section heading properties  */
 .section-header {
-    font-weight: 800;
-    font-size: 1.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
     color: var(--secondary-color);  
     font-family: var(--font-title);
     text-align: left;
@@ -103,7 +103,6 @@ ion-icon {
 }
 
 
-
 #event-date{
     font-family: var(--font-para);
     color: white !important;
@@ -136,11 +135,14 @@ ion-icon {
 }
 
 
-#news {
+#news{
     background-color: var(--bg-color);
 }
 
-
+#news-text{
+    overflow: auto;
+    height: 10rem;
+}
 #news-date{
     font-family: var(--font-title);
     font-size: smaller;
@@ -150,18 +152,19 @@ ion-icon {
 #news-header{
     font-family: var(--font-title);
     font-size: 1.2rem;
+    font-weight: 600;
     color: var(--primary-color);
 }
 #news-content{
-    height:60px;
+    height: 60px;
     color: var(--primary-color);
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
     font-family: var(--font-para);
     font-size: smaller;
+    overflow: hidden;
 }
+
 #news-img{
+    height: 10rem;
     width: 100%;
 }
 #news-link{
@@ -177,6 +180,23 @@ ion-icon {
     color:var(--secondary-color);
     text-decoration: none;
 }
+
+#explore a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+#communities-scroll{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#communities a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
 
 /* explore devagiri */
 #explore {
@@ -205,12 +225,12 @@ ion-icon {
 	border: none;
 	background-position: center;
 	background-size: cover;
-	border-radius: 15px;
+	border-radius: 8px;
     padding: 0;
 }
 
 .card-block img{
-    border-radius: 15px 15px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .scrolling-wrapper::-webkit-scrollbar { 
