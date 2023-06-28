@@ -1,0 +1,186 @@
+/* carousel section properties */
+/* #carousel{
+} */
+
+#carousel img{
+    border-radius: 10px;
+}
+#blood-donation{
+    margin-top: 2em;
+}
+
+#blood-donation p{
+    color:var(--secondary-color);
+    font-family: var(--font-para);
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+
+
+
+/* #events{
+    background-color: var(--bg-color);
+} */
+
+
+
+#events-section{
+    border: 2px solid var(--primary-color);
+}
+
+
+#event-date{
+    font-family: var(--font-para);
+    color: white !important;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: smaller;
+}
+
+#event-time{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-para);
+}
+#event-name{
+    font-family: var(--font-title);
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 0;
+    font-size: 1rem;
+
+}
+
+
+
+#events a{
+    border-radius: 5px;
+    border: solid var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+#news{
+    background-color: var(--bg-color);
+}
+
+#news-text{
+    overflow: auto;
+    height: 10rem;
+}
+#news-date{
+    font-family: var(--font-title);
+    font-size: smaller;
+    padding: 0px;
+    margin: 0px;
+}
+#news-header{
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+#news-content{
+    height: 60px;
+    color: var(--primary-color);
+    font-family: var(--font-para);
+    font-size: smaller;
+    overflow: hidden;
+}
+
+#news-img{
+    height: 10rem;
+    width: 100%;
+}
+#news-link{
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-para);
+    font-size: smaller;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+#news-readmore{
+    color:var(--secondary-color);
+    text-decoration: none;
+}
+
+#explore a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+#communities-scroll{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#communities a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+
+/* explore devagiri */
+#explore {
+    background-color: var(--bg-color);
+}
+#explore a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+#explore-scroll{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.scrolling-wrapper{
+    margin-left: 0px;
+    margin-right: 0px;
+	overflow-x: auto;
+    text-align: center;
+    width: 100%;
+}
+.card-block{
+    padding: 20px;
+	height: 100%;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	border-radius: 8px;
+    padding: 0;
+}
+
+.card-block img{
+    border-radius: 8px 8px 8px 8px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+/* fests */
+
+#fests a{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+
+
+#about{
+    margin-top: 2em;
+    padding-bottom: 1em;
+    color: var(--primary-color);
+}
+
+#about a{
+    text-decoration: none;
+    color: white;
+}

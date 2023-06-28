@@ -1,0 +1,138 @@
+/* navigation bar properties */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 6rem;
+}
+
+.navbar-brand {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.navbar-brand img {
+  align-self: flex-end;
+}
+
+.navbar-brand-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.navbar-brand-heading_h1 h1 {
+  color: var(--secondary, #ffcd39);
+  font-size: 1.77688rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+.navbar-brand-heading_h2 h2 {
+  color: #fff;
+  font-size: 1rem;
+  font-family: var(--font-title);
+  font-weight: 500;
+  margin-top: -0.4rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.navbar-links p {
+  color: var(--white, #fff);
+  font-size: 1.2rem;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.navbar-menu_toggle-open {
+  display: none; 
+}
+.navbar-menu_toggle-close {
+  display: none;
+}
+
+.navbar-menu_container {
+  display: none;
+} 
+
+
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 1.5rem 3rem;
+  }
+  .navbar-brand-heading h1 {
+    font-size: 1.5rem;
+  }
+  .navbar-brand-heading_h2 p{
+    font-size: 0.875;
+  }
+  .navbar-links {
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  .navbar-links p {
+    display: none;
+  }
+  .navbar-menu{
+    display: flex;
+    align-self: center;
+  }
+  .navbar-menu_toggle-open {
+    display: flex;
+  }
+
+  .navbar-menu_container {
+    background:var(--third-color);
+    display: none;
+    text-align: end;
+    padding: 0.5rem 1rem;
+    color:var(--secondary);
+    position: absolute;
+    top: 3.7rem;
+    right: 2.5rem;
+    min-width: 80px;
+    border-radius: 5px;
+    z-index: 5;
+  }
+  .navbar-links_container-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .navbar-menu_container-links p {
+    font-family: var(--font-title);
+    color: var(--bg-color);
+    font-size: 18px;
+    padding: 0.5rem;
+    font-weight: 500;
+  }
+  .navbar-menu_container-links p:hover {
+    color: var(--color-bg);
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 430px) {
+
+  .navbar {
+    padding: 1rem 1rem 0rem 1rem;
+  }
+
+}
+
+

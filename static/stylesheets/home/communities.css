@@ -1,0 +1,84 @@
+/* communites  */
+
+.communities {
+  padding: 2rem 6rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.communities-heading h1 {
+  text-align: center;
+  color: var(--secondary, #ffcd39);
+  font-size: 1.5rem;
+  font-family: Satoshi;
+  font-weight: 700;
+  padding-bottom: 1.5rem;
+}
+
+.communities-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 8rem;
+  justify-content: center;
+}
+
+.community {
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 6px;
+  background: #b6b6ff;
+}
+
+.community h1 {
+  color: var(--primary, #3e3e82);
+  font-size: 3rem;
+  font-family: Satoshi;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1024px) {
+  .communities {
+    padding: 1.5rem 3rem;
+  }
+
+  .communities-section {
+    gap: 3rem;
+  }
+
+  .community h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .communities{
+    padding: 1rem 2rem;
+  }
+}
+
+
+@media screen and (max-width: 430px) {
+  .communities{
+    padding: 1rem 1rem;
+  }
+  .communities-heading h1{
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: left;
+    padding-bottom: 0.7rem;
+  }
+  .communities-section{
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .community h1{
+    font-size: 0.9rem;
+  }
+
+}
+

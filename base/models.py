@@ -15,20 +15,37 @@ from django.core.files import File
 class Carousel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField( max_length=200)
-    image = models.ImageField(upload_to='carousel_images/')
+    image = models.ImageField(upload_to='media/carousel_images/')
+
+
 
     # before saving the instance we’re reducing the image
     def save(self, *args, **kwargs):
+        self.image =self.convert_png_to_jpg(self.image)
         new_image = self.reduce_image_size(self.image)
         self.image = new_image
-        super().save(*args, **kwargs)    
+        super().save(*args, **kwargs) 
+
+    def convert_png_to_jpg(self, image):
+        if image.name.lower().endswith('.png'):
+            new_image = BytesIO()
+            with Image.open(image) as img:
+                img = img.convert('RGB')
+                img.save(new_image, 'JPEG')
+
+            # Create a new image file with the converted JPEG data
+            new_image.seek(0)
+            return File(new_image, name=image.name.replace('.png', '.jpg'))
+        return image 
 
     def reduce_image_size(self, image):
+        img_size = image.size //1024
         img = Image.open(image)
         thumb_io = BytesIO()
-        img.save(thumb_io, 'jpeg', quality=10)
-        new_image = File(thumb_io, name=image.name)
-        return new_image
+        Quality = int((200 // img_size) * 70)
+        img.save(thumb_io, 'jpeg', quality=Quality)
+        image = File(thumb_io, name=image.name)
+        return image
 
     def __str__(self):
         return self.title
@@ -60,20 +77,35 @@ class News(models.Model):
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='news_images',default='default_image.jpg')
+    image = models.ImageField(upload_to='media/news_images',default='default_image.jpg')
 
-    # before saving the instance we’re reducing the image
+     # before saving the instance we’re reducing the image
     def save(self, *args, **kwargs):
+        self.image =self.convert_png_to_jpg(self.image)
         new_image = self.reduce_image_size(self.image)
         self.image = new_image
-        super().save(*args, **kwargs)    
+        super().save(*args, **kwargs) 
+
+    def convert_png_to_jpg(self, image):
+        if image.name.lower().endswith('.png'):
+            new_image = BytesIO()
+            with Image.open(image) as img:
+                img = img.convert('RGB')
+                img.save(new_image, 'JPEG')
+
+            # Create a new image file with the converted JPEG data
+            new_image.seek(0)
+            return File(new_image, name=image.name.replace('.png', '.jpg'))
+        return image 
 
     def reduce_image_size(self, image):
+        img_size = image.size //1024
         img = Image.open(image)
         thumb_io = BytesIO()
-        img.save(thumb_io, 'jpeg', quality=10)
-        new_image = File(thumb_io, name=image.name)
-        return new_image
+        Quality = int((200 // img_size) * 70)
+        img.save(thumb_io, 'jpeg', quality=Quality)
+        image = File(thumb_io, name=image.name)
+        return image
 
     def __str__(self):
         return self.title
@@ -83,21 +115,35 @@ class Explore(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     created_by = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='explore_images')
+    image = models.ImageField(upload_to='media/explore_images')
 
-    # before saving the instance we’re reducing the image
+     # before saving the instance we’re reducing the image
     def save(self, *args, **kwargs):
+        self.image =self.convert_png_to_jpg(self.image)
         new_image = self.reduce_image_size(self.image)
         self.image = new_image
-        super().save(*args, **kwargs)    
+        super().save(*args, **kwargs) 
+
+    def convert_png_to_jpg(self, image):
+        if image.name.lower().endswith('.png'):
+            new_image = BytesIO()
+            with Image.open(image) as img:
+                img = img.convert('RGB')
+                img.save(new_image, 'JPEG')
+
+            # Create a new image file with the converted JPEG data
+            new_image.seek(0)
+            return File(new_image, name=image.name.replace('.png', '.jpg'))
+        return image 
 
     def reduce_image_size(self, image):
+        img_size = image.size //1024
         img = Image.open(image)
         thumb_io = BytesIO()
-        img.save(thumb_io, 'jpeg', quality=10)
-        new_image = File(thumb_io, name=image.name)
-        return new_image
-
+        Quality = int((200 // img_size) * 70)
+        img.save(thumb_io, 'jpeg', quality=Quality)
+        image = File(thumb_io, name=image.name)
+        return image
 
     def __str__(self):
         return self.name
@@ -105,20 +151,36 @@ class Explore(models.Model):
 class Fests(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name=models.CharField(max_length=200 ,null=True)
-    logo=models.ImageField(upload_to='fest_logos', default='default_image.jpg')
+    logo=models.ImageField(upload_to='media/fest_logos', default='default_image.jpg')
 
-        # before saving the instance we’re reducing the image
+
+    # before saving the instance we’re reducing the image
     def save(self, *args, **kwargs):
+        self.logo =self.convert_png_to_jpg(self.logo)
         new_image = self.reduce_image_size(self.logo)
         self.logo = new_image
-        super().save(*args, **kwargs)    
+        super().save(*args, **kwargs) 
 
-    def reduce_image_size(self, logo):
-        img = Image.open(logo)
+    def convert_png_to_jpg(self, logo):
+        if logo.name.lower().endswith('.png'):
+            new_image = BytesIO()
+            with Image.open(logo) as img:
+                img = img.convert('RGB')
+                img.save(new_image, 'JPEG')
+
+            # Create a new image file with the converted JPEG data
+            new_image.seek(0)
+            return File(new_image, name=logo.name.replace('.png', '.jpg'))
+        return logo 
+
+    def reduce_image_size(self, image):
+        img_size = image.size //1024
+        img = Image.open(image)
         thumb_io = BytesIO()
-        img.save(thumb_io, 'jpeg', quality=10)
-        new_image = File(thumb_io, name=logo.name)
-        return new_image
+        Quality = int((200 // img_size) * 70)
+        img.save(thumb_io, 'jpeg', quality=Quality)
+        image = File(thumb_io, name=image.name)
+        return image
 
     def __str__(self):
         return self.name
@@ -146,6 +208,8 @@ class BloodDonatedStudents(models.Model):
     def __str__(self):
         return self.name
     
+
+
 
 
 

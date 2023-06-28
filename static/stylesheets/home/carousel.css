@@ -1,0 +1,110 @@
+/* carousel properties */
+.carousel {
+    display: flex;
+    align-items: center;
+    padding: 2rem 6rem;
+    justify-content: space-between;
+  }
+  
+  .carousel-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .carousel-heading_h1 h1 {
+    color: #fff;
+    font-size: 3.375rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    line-height: 115%;
+    width: 33.5rem;
+  }
+  
+  .carousel-heading_p p {
+    display: flex;
+    width: 24rem;
+    height: 3.0625rem;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--third, #b6b6ff);
+    font-size: 1.25rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+  }
+  
+  .carousel-img{
+    width: 33.414rem;
+    height: 42.1875rem;
+    border-radius: 1.5rem;
+    /* background: cover; */
+    display: none;
+  }
+
+  .carousel-img:first-child {
+    display: flex;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .carousel{
+      padding: 1.5rem 3rem;
+    }
+    .carousel-heading{
+      gap:0.5rem
+    }
+    .carousel-heading_h1 h1{
+      font-size: 2rem;
+      width: 23.5rem;
+    }
+    .carousel-heading_p p{
+      width: 14rem;
+      font-size: 1rem;
+    }
+    .carousel-img {
+      width: 25.414rem;
+      height: 32.1875rem;
+      border-radius: 1.5rem;
+
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .carousel{
+      padding: 1rem 2rem;
+      justify-content: center;
+    }
+    .carousel-heading_h1{
+      display: none;
+    }
+    .carousel-heading_p {
+      display: none;  
+    }
+
+    .carousel-img {
+      width: 25.414rem;
+      height: 32.1875rem;
+      border-radius: 1rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .carousel{
+      padding: 1rem 2rem;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .carousel{
+      padding: 1rem 1rem;
+      /* height: 25.125rem; */
+    }
+    .carousel-image{
+      max-width: 100%;
+
+    }
+    .carousel-img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0.5rem;
+    }
+  }

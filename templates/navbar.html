@@ -1,5 +1,96 @@
 {% load static %}
-<header>
+
+<link rel="stylesheet" href="{% static 'stylesheets/navbar.css' %}">
+<!-- navigation bar section  -->
+<div class="navbar ">
+    <div class="navbar-brand ">
+        <div class="navbar-brand_logo">
+            <img src="{% static 'assets/logo.svg' %}" alt="">
+        </div>
+        <div class="navbar-brand-heading">
+            <div class="navbar-brand-heading_h1">
+                <h1>
+                    Devagiri Campus
+                </h1>
+            </div>
+            <div class="navbar-brand-heading_h2">
+                <h2>
+                    powered by <span>BCA<sup>21-24</sup></span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-links">
+        <p>
+            <a href="#home">Home</a>
+        </p>
+        <p>
+            <a href="#wgpt3">Programs</a>
+        </p>
+        <p>
+            <a href="#possibility">Fests</a>
+        </p>
+        <p>
+            <a href="#features">News</a>
+        </p>
+        <p>
+            <a href="#blog">Explore</a>
+        </p>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-menu_toggle">
+            <a class="navbar-menu_toggle-open" onclick="openDropdown()">
+                <img src="{% static 'assets/bars-3-bottom-right.svg' %}" alt="" />
+            </a>
+            <a class="navbar-menu_toggle-close" onclick="closeDropdown()">
+                <img src="{% static 'assets/x-mark.svg' %}" alt="" />
+            </a>
+        </div>
+        <div class="navbar-menu_container">
+            <div class="navbar-menu_container-links">
+                <p>
+                    <a href="#home">Home</a>
+                </p>
+                <p>
+                    <a href="#wgpt3">Programs</a>
+                </p>
+                <p>
+                    <a href="#possibility">Fests</a>
+                </p>
+                <p>
+                    <a href="#features">News</a>
+                </p>
+                <p>
+                    <a href="#blog">Explore</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openDropdown() {
+        var dropdown = document.querySelector(".navbar-menu_container");
+        var closeToggle = document.querySelector(".navbar-menu_toggle-close");
+        var openToggle = document.querySelector(".navbar-menu_toggle-open");
+        dropdown.style.display = "block";
+        openToggle.style.display = "none";
+        closeToggle.style.display = "block";
+    }
+    function closeDropdown() {
+        var dropdown = document.querySelector(".navbar-menu_container");
+        var closeToggle = document.querySelector(".navbar-menu_toggle-close");
+        var openToggle = document.querySelector(".navbar-menu_toggle-open");
+        dropdown.style.display = "none";
+        openToggle.style.display = "block";
+        closeToggle.style.display = "none";
+    }
+</script>
+
+
+
+
+{% comment %} <header>
     <!-- navbar  -->
   <nav id="navbar" class="navbar sticky-top navbar-expand-sm ">
     <div class="container-fluid">
@@ -34,30 +125,6 @@
         </ul>
       </div>
   </nav>
+</header> {% endcomment %}
 
-  {% comment %} <div class="d-flex justify-content-center ">
-    <div class="bottom-bar justify-content-between">
-      <a href="{% url 'blood-donation-admin' %}" class="bottom-bar-link ">
-        <ion-icon name="person-outline" size='large'></ion-icon>
-      </a>
-      <a href="{% url 'home' %}" class="bottom-bar-link"><ion-icon name="home-outline" size='large'></ion-icon></a>
-      <a href="{% url 'blood-donation-admin' %}" class="bottom-bar-link"><ion-icon name="planet-outline" size='large'></ion-icon></a>
-    </div>
-  </div> {% endcomment %}
-
-  <div>
-    
-  </div>
-</header>
-
-<script>
-  {% comment %} this is a a fix for the black ouline in the toggler  {% endcomment %}
-  
-  const navbarToggler = document.querySelector('.navbar-toggler');
-
-navbarToggler.addEventListener('click', function() {
-  this.blur();
-});
-
-</script>
 

@@ -1,107 +1,300 @@
-{% extends 'main.html' %}
-{% load static %}
+{% extends 'main.html' %} {% load static %} {% block content %}
 
-{% block content %}
 
-<div class="alert alert alert-danger" role="alert">
-  This is a Demo, Stable releasing soon !
+
+<!-- carousel section  -->
+{% if carousels %}
+<div class="carousel">
+  <div class="carousel-heading">
+    <div data-aos="fade-up" class="carousel-heading_h1">
+      <h1>Welcome to Devagiri Campus</h1>
+    </div>
+    <div data-aos="fade-up" class="carousel-heading_p">
+      <p>website for the Devagiri college students to hangout !</p>
+    </div>
+  </div>
+  <div data-aos="fade-up" class="carousel-image">
+    {% for carousel in carousels %}
+    <img class="carousel-img" src="/media/{{carousel.image}}" alt="" />
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var images = document.getElementsByClassName("carousel-img");
+    var currentIndex = 0;
+  
+    setInterval(function() {
+      images[currentIndex].style.display = "none";
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.display = "block";
+    }, 3000);
+  });
+</script>
+
+
+
+<!-- blood donation  -->
+{% if blood_req %}
+<div class="blood-donation">
+  <div data-aos="fade-up" class="blood-donation-heading">
+    <h1>
+      {% for blood in blood_req %}
+      <span>{{blood.bloodGroup}}</span> 
+      {% endfor %}
+      Blood Urgent !</h1>
+  </div>
+  <div data-aos="fade-up" class="blood-donation-cta">
+    <button type="button">Donate Now</button>
+  </div>
+</div>
+{% endif %}
+
+
+<!-- programs  -->
+{% if events %}
+<div class="program">
+  <div data-aos="fade-up" class="program-heading">
+    <h1>PROGRAMS</h1>
+  </div>
+  <div class="program-section">
+    {% for event in events  %}
+    <div data-aos="fade-up" class="program-content">
+      <div class="program-content-body">
+        <div data-aos="fade-up" class="program-content-body_details">
+          <div class="program-content_date">
+            <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
+            <p>{{event.date}}</p>
+          </div>
+          <div class="program-content_time">
+            <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
+            <p>{{event.time}}</p>
+          </div>
+          <div class="program-content_conducted">
+            <p>IEDC</p>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="program-content-body_main">
+          <h2>{{event.name}}</h2>
+        </div>
+      </div>
+      <div data-aos="fade-up" class="program-content-cta">
+        <a href="">
+          <img src="{% static 'assets/programs-cta-arrow.svg' %}" alt="" />
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+
+<!-- communities  -->
+<div class="communities">
+  <div data-aos="fade-up" class="communities-heading">
+    <h1>COMMUNITIES</h1>
+  </div>
+  <div data-aos="fade-up" class="communities-section">
+    <a href="">
+      <div class="community">
+        <h1>NSS</h1>
+      </div>
+    </a>
+  </div>
 </div>
 
-<div class=" align-items-center justify-content-center">
-    <!-- carousel section  -->
-    <div data-aos="fade-down" class="carousel slide carousel-fade col-12 col-md-4 mb-3" data-bs-ride="carousel">
-      <div class="carousel-inner" id="carousel">
-        {% for carousel in carousels %}
-        {% if forloop.first %}
-        <div class="carousel-item active">
-        {% else %}
-          <div class="carousel-item">
-        {% endif %}
-            <img src="/media/{{carousel.image}}" width="100%" height="450vh" >
+
+
+
+
+<!-- news  -->
+{% if newses %}
+<div class="news">
+  <div data-aos="fade-up" class="news-heading">
+    <h1>NEWS</h1>
+  </div>
+  <div class="news-section">
+    {% for news in newses  %}
+    <a href="">
+      <div class="news-section-content">
+        <div data-aos="fade-up" class="news-section-content_main">
+          <h1>{{news.title}}</h1>
+          <div class="news-section-content_main-date">
+            <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
+            <span>June, 2023, 6:07 pm</span>
           </div>
+          <p>{{news.body}}</p>
+        </div>
+        <div data-aos="fade-up" class="news-section-content_img">
+          <img src="/media/{{news.image}}" alt="" />
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+<!-- campus  -->
+{% if explores %}
+<div class="explore">
+  <div data-aos="fade-up" class="explore-heading">
+    <h1>CAMPUS</h1>
+  </div>
+  <div class="explore-infra-list">
+    {% for explore in explores %}
+    <a href="">
+      <div data-aos="fade-up" class="explore-infra">
+        <img src="/media/{{explore.image}}" alt="" />
+        <p>{{explore.name}}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+<!-- fests  -->
+{% if fests %}
+<div class="fests">
+  <div data-aos="fade-up" class="fest-heading">
+    <h1>FESTS</h1>
+  </div>
+  <div class="fest-list">
+    {% for fest in fests %}
+    <a href="">
+      <div data-aos="fade-up" class="fest">
+        <img src="/media/{{fest.logo}}" alt="" />
+        <p>{{fest.name}}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% comment %}
+<div class="align-items-center justify-content-center">
+  <!-- carousel section  -->
+  <div
+    data-aos="fade-down"
+    class="carousel slide carousel-fade col-12 col-md-4 mb-3"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner" id="carousel">
+      {% for carousel in carousels %} {% if forloop.first %}
+      <div class="carousel-item active">
+        {% else %}
+        <div class="carousel-item">
+          {% endif %}
+          <img src="/media/{{carousel.image}}" width="100%" height="450vh" />
+        </div>
         {% endfor %}
       </div>
     </div>
-  
-    {% comment %} script for carousel movement {% endcomment %}
-    <script>
-   
-    </script>
 
-  
     {% if blood_req %}
-    <div  id="blood-donation" class="p-3 col-md-8">
-        <p data-aos="fade-up" class="text-center" >
-            {% for blood in blood_req %}
-            <span class='text-danger'>{{blood.bloodGroup}} </span>
-            {% endfor %}
-             Blood Urgent !</p>
-        <div data-aos="fade-up" class=" text-center">
-          <a  class="btn btn-danger"  href="{% url 'blood-donation-form' %}">Donate now</a>
-        </div>
+    <div id="blood-donation" class="p-3 col-md-8">
+      <p data-aos="fade-up" class="text-center">
+        {% for blood in blood_req %}
+        <span class="text-danger">{{blood.bloodGroup}} </span>
+        {% endfor %} Blood Urgent !
+      </p>
+      <div data-aos="fade-up" class="text-center">
+        <a class="btn btn-danger" href="{% url 'blood-donation-form' %}"
+          >Donate now</a
+        >
+      </div>
     </div>
-    {% endif %} 
-  
-   
-  
+    {% endif %}
+
     <!-- daily updates -->
     {% if events %}
-    <div id="events"  class="col-12 col-md-8 mb-3">
-      <h3 class="section-header" data-aos="fade-up" >PROGRAMS</h3>
-      {% for event in events  %}
-      <div data-aos="fade-up" class=" rounded mb-3 " id="events-section">
-        <div  id="eventClick" class="row p-2" data-bs-toggle="collapse" href="#collapse{{event.id}}" role="button"
-          aria-expanded="false" aria-controls="collapseExample">
-          <div data-aos="fade-right" class="col-8" >
+    <div id="events" class="col-12 col-md-8 mb-3">
+      <h3 class="section-header" data-aos="fade-up">PROGRAMS</h3>
+      {% for event in events %}
+      <div data-aos="fade-up" class="rounded mb-3" id="events-section">
+        <div
+          id="eventClick"
+          class="row p-2"
+          data-bs-toggle="collapse"
+          href="#collapse{{event.id}}"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          <div data-aos="fade-right" class="col-8">
             <ion-icon name="calendar-outline"></ion-icon>
             <small id="event-date">{{event.date}}</small>
             <h3 id="event-name">{{event.name}}</h3>
           </div>
-          <div data-aos="fade-up" class="col-4 text-end ">
+          <div data-aos="fade-up" class="col-4 text-end">
             <ion-icon name="alarm-outline"></ion-icon>
             <small id="event-time">{{event.time}}</small>
             <div>
-              <ion-icon name="chevron-down-outline" size="large" ></ion-icon><br>
+              <ion-icon name="chevron-down-outline" size="large"></ion-icon
+              ><br />
             </div>
           </div>
         </div>
         <div class="collapse px-2" id="collapse{{event.id}}">
           <div id="events-conditions" class="p-0">
-            <div class="col-10" style="width:360px; display: inline-block;">
-              <p style="font-size:13.3px;">{{event.description}}</p>
+            <div class="col-10" style="width: 360px; display: inline-block">
+              <p style="font-size: 13.3px">{{event.description}}</p>
             </div>
-            </div>
-            {% if event.link %}
-            <div class="pt-2 pb-2 text-end">
-              <a href="{{event.link}}" style="padding:3px;" target="_blank" class="btn btn-sm text-end">Register now</a>
-            </div>
-            {% endif %}
           </div>
+          {% if event.link %}
+          <div class="pt-2 pb-2 text-end">
+            <a
+              href="{{event.link}}"
+              style="padding: 3px"
+              target="_blank"
+              class="btn btn-sm text-end"
+              >Register now</a
+            >
+          </div>
+          {% endif %}
         </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- communities  -->
+  <div id="communities" class="col-12 mb-3 col-md-6">
+    <div class="row">
+      <h2 data-aos="fade-up" class="section-header col-9">COMMUNITIES</h2>
+    </div>
+    <div
+      data-aos="fade-up"
+      class="scrolling-wrapper row flex-row flex-nowrap"
+      id="communities-scroll"
+    >
+      {% for explore in explores %}
+      <div class="col-4">
+        <a href="{% url 'explore' explore.id %}">
+          <div class="card-block card">
+            <img
+              src="/media/{{explore.image}}"
+              alt=""
+              width="100%"
+              height="88px"
+            />
+            <h6 class="pt-2">IEDC</h6>
+          </div>
+        </a>
       </div>
       {% endfor %}
     </div>
-    {% endif %}
-
-    <!-- communities  -->
-    <div id="communities" class="col-12 mb-3 col-md-6">
-      <div class='row'>
-        <h2 data-aos="fade-up" class="section-header col-9">COMMUNITIES</h2>
-      </div>
-      <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap" id="communities-scroll">
-          {% for explore in explores %}
-        <div class="col-4">
-          <a  href="{% url 'explore' explore.id %}">
-            <div class="card-block card">
-              <img src="/media/{{explore.image}}" alt="" width="100%" height="88px">
-              <h6 class="pt-2">IEDC</h6>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-  
-      </div>
-    </div> 
+  </div>
 
   <!-- news  -->
   <div id="news" class="col-12 pb-3 col-md-6">
@@ -114,61 +307,77 @@
           <p id="news-content">{{news.body}}</p>
         </div>
         <div data-aos="fade-up" class="col-6">
-          <img id="news-img" src="/media/{{news.image}}" class="rounded" height="160px" alt="">
+          <img
+            id="news-img"
+            src="/media/{{news.image}}"
+            class="rounded"
+            height="160px"
+            alt=""
+          />
         </div>
       </div>
     </a>
     {% endfor %}
-  </div> 
-
+  </div>
 
   <!-- explore devagiri  -->
   <div id="explore" class="col-12 mb-3 col-md-6">
-    <div  class='row'>
+    <div class="row">
       <h2 class="section-header col-9">CAMPUS</h2>
     </div>
-    
-    <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap" id="explore-scroll">
-        {% for explore in explores %}
+
+    <div
+      data-aos="fade-up"
+      class="scrolling-wrapper row flex-row flex-nowrap"
+      id="explore-scroll"
+    >
+      {% for explore in explores %}
       <div class="col-4">
-        <a  href="{% url 'explore' explore.id %}">
+        <a href="{% url 'explore' explore.id %}">
           <div class="card-block card">
-            <img src="/media/{{explore.image}}" alt="" width="100%" height="88px">
+            <img
+              src="/media/{{explore.image}}"
+              alt=""
+              width="100%"
+              height="88px"
+            />
             <h6 class="pt-2">{{explore.name}}</h6>
           </div>
-        </a>
-      </div>
-      {% endfor %}
-
-    </div>
-  </div> 
-
-
-
-<!-- fest devagiri  -->
-  <div  id="fests" class="col-12 mb-4 col-md-6">
-    <div class='row'>
-      <h2 data-aos="fade-up" class="section-header col-9">FESTS</h2>
-    </div>
-    <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap">
-        {% for fest in fests %}
-      <div class="col-4">
-        <a href="{% url 'fests' fest.id %}">
-        <div class="card-block card">
-          <img class="" src="/media/{{fest.logo}}" alt="" width="100%" height="88px">
-          <h6 class="pt-2">{{fest.name}}</h6>
-        </div>
         </a>
       </div>
       {% endfor %}
     </div>
   </div>
 
+  <!-- fest devagiri  -->
+  <div id="fests" class="col-12 mb-4 col-md-6">
+    <div class="row">
+      <h2 data-aos="fade-up" class="section-header col-9">FESTS</h2>
+    </div>
+    <div data-aos="fade-up" class="scrolling-wrapper row flex-row flex-nowrap">
+      {% for fest in fests %}
+      <div class="col-4">
+        <a href="{% url 'fests' fest.id %}">
+          <div class="card-block card">
+            <img
+              class=""
+              src="/media/{{fest.logo}}"
+              alt=""
+              width="100%"
+              height="88px"
+            />
+            <h6 class="pt-2">{{fest.name}}</h6>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 
- <div  id="about" class="col-12 mt-4 mb-1 col-md-8 justify-content-center">
+  <div id="about" class="col-12 mt-4 mb-1 col-md-8 justify-content-center">
     <div class="row mb-3">
       <div class="col-6 pl-2">
-        <h6 class="m-0">IEDC Devagiri </h6>
+        <h6 class="m-0">IEDC Devagiri</h6>
       </div>
       <div class="col-6">
         <div class="row pt-3">
@@ -199,12 +408,5 @@
       <p class="m-0">Copyright &copy;2023 iedc</p>
     </div>
   </div>
-</div> 
-
-  
-
-
-
-
-
-{% endblock content %}
+</div>
+{% endcomment %} {% endblock content %}

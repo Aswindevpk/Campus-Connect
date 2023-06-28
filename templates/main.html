@@ -6,32 +6,43 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     {% comment %} animate on scroll library for scroll animation {% endcomment %}
     <link rel="stylesheet" href="{% static 'aos/aos.css' %}">
     {% comment %} sweet alert for popup messages {% endcomment %}
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> {% endcomment %}
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Roboto">
+    {% comment %} <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet"> {% endcomment %}
+                
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> {% endcomment %}
     <!-- external css  -->
-    <link rel="stylesheet" href="{% static '/stylesheets/style.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/index.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/home/carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'stylesheets/home/blooddonation.css' %}"/>
+    <link rel="stylesheet" href="{% static 'stylesheets/home/programs.css' %}" />
+    <link rel="stylesheet" href="{% static 'stylesheets/home/communities.css' %}" />
+    <link rel="stylesheet" href="{% static 'stylesheets/home/news.css' %}" />
+    <link rel="stylesheet" href="{% static 'stylesheets/home/explore.css' %}" />
+    <link rel="stylesheet" href="{% static 'stylesheets/home/fests.css' %}" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <!-- bootstrap icons  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
-    <title>Devagiri Campus</title>
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <title>Devagiri Campus</title> {% endcomment %}
     
 </head>
 
 <body>
-    {% comment %} <div class=" preloader justify-content-center align-items-center  d-flex">
-            <h1 class="text-center mt-2" ></h1>
-        
-    </div> {% endcomment %}
        
     {% include 'navbar.html' %}
 
@@ -39,49 +50,14 @@
     
     {% endblock content %}
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    {% include 'footer.html' %}
     
       
-   
 </body>
-<script>
-    $(document).ready(function () {
-        $('.carousel').carousel({
-          interval: 5000
-        });
-        $(".carousel").swiperight(function () {
-          $(this).carousel('prev');
-        });
-        $(".carousel").swipeleft(function () {
-          $(this).carousel('next');
-        });
 
-         // Hide the bottom bar on page load
-         $(".bottom-bar").hide();
-        
-         // Show the bottom bar when the user interacts with the page
-         $(document).on("click touchstart", function() {
-           $(".bottom-bar").show();
-         });
-
-
-      });
-    
-    {% comment %} window.onload = function() {
-        // Show the preloader
-        document.querySelector('.preloader').classList.remove('hide');
-      };
-      
-      window.setTimeout(function() {
-        // Hide the preloader after 3 seconds
-        document.querySelector('.preloader').classList.add('hide');
-      }, 2000); // Change 3000 to the desired delay in milliseconds {% endcomment %}
-</script>
 <script src="{% static 'aos/aos.js' %}"></script>
 <script>
   AOS.init();
 </script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </html>

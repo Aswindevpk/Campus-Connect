@@ -1,0 +1,71 @@
+/* blood donation  */
+
+.blood-donation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 6rem;
+}
+
+.blood-donation-heading h1 {
+  color: #ffcd39;
+  font-size: 2.5rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+.blood-donation-heading h1 span {
+  color: #fa3434;
+}
+
+.blood-donation-cta button {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #f21b1b;
+  border: none;
+  outline: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .blood-donation {
+    padding: 1.5rem 3rem;
+  }
+  .blood-donation-heading h1 {
+    font-size: 2rem;
+  }
+  .blood-donation-cta button {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .blood-donation {
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .blood-donation {
+    padding: 1rem 1rem;
+  }
+  .blood-donation-heading h1 {
+    font-size: 1.5rem;
+  }
+  .blood-donation-cta button {
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
