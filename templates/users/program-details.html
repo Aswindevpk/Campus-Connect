@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'stylesheets/users/program_details.css' %}">
+<div class="program-page-content">
+    {% if program.community %}
+        <div class="program-page-content_conducted">
+          <span>{{program.community}}</span>
+        </div>
+        {% else %}
+        <div class="program-page-content_conducted">
+          <span>{{program.fest}}</span>
+        </div>
+        {% endif %}
+    <div class="program-page-content_heading">
+        <h1>{{program.name}}</h1>
+    </div>
+    <div class="program-page-content_details">
+        <div class="program-page-content_time">
+            <p>{{program.date}}, {{program.time}}</p>
+        </div>
+        <div class="program-page-content_venue">
+            <p>Venue: {{program.venue}}</p>
+        </div>
+    </div>
+    <div class="program-page-content_para">
+        <p>{{program.description}}</p>
+    </div>
+    <div class="program-page-content-tc">
+        <h1>Terms & Conditions</h1>
+        <ul>
+            <li>If users abuse your website or mobile app in any way</li>
+            <li>If users can post content on your website or mobile app</li>
+            <li>If you sell products or services, you could cancel specific orders </li>
+        </ul>
+    </div>
+    {% if program.link %}
+    <div class="program-page-content-cta">
+        {% comment %} <p>accepts Terms & Conditions</p> {% endcomment %}
+        <button type="button" onclick="location.href='{{program.link}}';">Participate Now</button>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

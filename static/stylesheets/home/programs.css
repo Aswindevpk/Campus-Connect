@@ -96,7 +96,7 @@
   flex-direction: column;
   color: var(--white, #fff);
   font-size: 1.2rem;
-  font-family: Satoshi;
+  font-family: var(--font-title);
   font-weight: 700;
 }
 
@@ -147,7 +147,7 @@
 
 @media screen and (max-width: 430px) {
   .program {
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
   }
   .program-heading h1 {
     font-size: 1.2rem;

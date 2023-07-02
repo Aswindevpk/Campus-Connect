@@ -1,23 +1,25 @@
 {% extends 'main.html' %}
-
-{% comment %} for customizing django default form  {% endcomment %}
-{% load widget_tweaks %}
+{% load static %}
  
 
 {% block content %}
-<nav class="m-3 mt-0" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a   href="/" style="text-decoration: none;">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Blood donation</li>
-    </ol>
-</nav>
-<div id="blood-donation-form" class="m-3 align-center justify-content-center">
-    <h2 class="mt-5 text-center">Fill Form To Donate</h2>
-    <p class="pb-3 text-center">A single drop of blood can make a huge difference</p>
-    <form id='donationForm' onsubmit="handleFormSubmission(event)" action="" method="post">
+<link rel="stylesheet" href="{% static 'stylesheets/users/blood-donation-form.css' %}">
+
+
+<div class="blood-donation-form">
+    <div class="blood-donation-form-heading">
+        <h1>Fill Form To Donate</h1>
+        <p>
+            A single drop of blood can make a huge 
+            difference
+        </p>
+    </div>
+    <div class="blood-donation-form_form">
+      <form id='donationForm' onsubmit="handleFormSubmission(event)" action="" method="post">
         
         {% csrf_token %}
        
+        {% comment %} errors show here  {% endcomment %}
         {% if form.errors %}
           {% if form.phone.errors %}
             <div class="alert alert-danger" role="alert">
@@ -29,36 +31,28 @@
               {{ form.roll_no.errors|first }}
             </div>
           {% endif %}
-        {% endif %}
-        
-        <div class="mb-4">
-            {% render_field form.name placeholder="Name" type="text"%}
-        </div>
-        <div class="mb-4">
-            {% render_field form.blood_type type="select"%}
-        </div>
-        <div class="mb-4">
-            {% render_field form.roll_no placeholder="Roll no eg: 21USCA00" type="text"%}
-        </div>
-        <div class="mb-4">
-            {% render_field form.phone placeholder="Mobile Number" type="text"%}
-        </div>
+        {% endif %} 
+        <div class="blood-donation-form_fields">
+          
+          {% for field in  form %}
+          <div class="blood-donation-form_field">
+            <label>{{field.label}}</label>
+            {{field}}
+            {% comment %} <input type="text" id="name" placeholder="Your name here"> {% endcomment %}
+            <span></span>
+          </div>
+          {% endfor %}
 
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </form>
-
+        <div class="blood-donation-form-cta">
+          <button type="submit">Donate Now</button>
+        </div>
+      </form> 
+    </div>
+  
 </div>
 
 
-<style>
-    {% comment %} style for error valedator {% endcomment %}
-    label{
-        color:red;
-        font-size:12px;
-    }
-</style>
 
 
 <script>
@@ -130,8 +124,6 @@
             });
         }
     }
-
-
 </script>
 
 {% endblock content %}

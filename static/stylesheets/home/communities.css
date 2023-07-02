@@ -10,7 +10,7 @@
   text-align: center;
   color: var(--secondary, #ffcd39);
   font-size: 1.5rem;
-  font-family: Satoshi;
+  font-family: var(--font-title);
   font-weight: 700;
   padding-bottom: 1.5rem;
 }
@@ -35,7 +35,7 @@
 .community h1 {
   color: var(--primary, #3e3e82);
   font-size: 3rem;
-  font-family: Satoshi;
+  font-family: var(--font-title);
   font-weight: 700;
 }
 

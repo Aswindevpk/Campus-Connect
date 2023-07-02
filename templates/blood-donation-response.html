@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load static %}
+ 
+
+{% block content %}
+<div class="blood-donation-response">
+    <h1>Your details submitted Sucessfully !</h1>
+</div>
+<style>
+    .blood-donation-response{
+        padding: 2rem 2rem;
+        justify-content: center;
+    }
+    .blood-donation-response h1{
+
+        font-family: var(--font-para);
+        font-size: 1.5rem;
+        color:var(--primary-color);
+        text-align: center;
+        padding-top: 2rem;
+    }
+</style>
+{% endblock content %}

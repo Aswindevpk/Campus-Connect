@@ -17,7 +17,16 @@
 
 body{
     background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+/* make the tap effect on button and a tag disappear  */
+html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
 
 a{
     color: unset;

@@ -1,4 +1,7 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
+{% extends 'main.html' %} 
+{% load static %} 
+
+{% block content %}
 
 
 
@@ -14,8 +17,14 @@
     </div>
   </div>
   <div data-aos="fade-up" class="carousel-image">
-    {% for carousel in carousels %}
-    <img class="carousel-img" src="/media/{{carousel.image}}" alt="" />
+    {% for carousel in carousels %} 
+      {% if carousel.news %}
+        <img class="carousel-img" onclick="gotoUrl('{% url 'news-details' carousel.news.id %}')" src="/media/{{carousel.image}}" alt="" />
+      {% elif carousel.program %}
+      <img class="carousel-img" onclick="gotoUrl('{% url 'program-details' carousel.program.id %}')" src="/media/{{carousel.image}}" alt="" />
+      {% else %}
+      <img class="carousel-img" src="/media/{{carousel.image}}" alt="" />
+      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -33,6 +42,9 @@
       images[currentIndex].style.display = "block";
     }, 3000);
   });
+  function gotoUrl(url){
+    window.location.href =url ;
+  }
 </script>
 
 
@@ -48,7 +60,7 @@
       Blood Urgent !</h1>
   </div>
   <div data-aos="fade-up" class="blood-donation-cta">
-    <button type="button">Donate Now</button>
+    <button type="button" onclick="location.href='{% url 'blood-donation-form' %}';">Donate Now</button>
   </div>
 </div>
 {% endif %}
@@ -56,7 +68,7 @@
 
 <!-- programs  -->
 {% if events %}
-<div class="program">
+<div id="#programs" class="program">
   <div data-aos="fade-up" class="program-heading">
     <h1>PROGRAMS</h1>
   </div>
@@ -73,16 +85,22 @@
             <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
             <p>{{event.time}}</p>
           </div>
+          {% if event.community %}
           <div class="program-content_conducted">
-            <p>IEDC</p>
+            <p>{{event.community}}</p>
           </div>
+          {% else %}
+          <div class="program-content_conducted">
+            <p>{{event.fest}}</p>
+          </div>
+          {% endif %}
         </div>
         <div data-aos="fade-up" class="program-content-body_main">
           <h2>{{event.name}}</h2>
         </div>
       </div>
       <div data-aos="fade-up" class="program-content-cta">
-        <a href="">
+        <a href="{% url 'program-details' event.id %}">
           <img src="{% static 'assets/programs-cta-arrow.svg' %}" alt="" />
         </a>
       </div>
@@ -100,11 +118,13 @@
     <h1>COMMUNITIES</h1>
   </div>
   <div data-aos="fade-up" class="communities-section">
-    <a href="">
+    {% for community in communities  %}
+    <a href="{% url 'community-details' community.id %}">
       <div class="community">
-        <h1>NSS</h1>
+        <h1>{{community.name | upper}}</h1>
       </div>
     </a>
+    {% endfor %}
   </div>
 </div>
 
@@ -114,13 +134,13 @@
 
 <!-- news  -->
 {% if newses %}
-<div class="news">
+<div id="news" class="news">
   <div data-aos="fade-up" class="news-heading">
     <h1>NEWS</h1>
   </div>
   <div class="news-section">
     {% for news in newses  %}
-    <a href="">
+    <a href="{% url 'news-details' news.id %}">
       <div class="news-section-content">
         <div data-aos="fade-up" class="news-section-content_main">
           <h1>{{news.title}}</h1>
@@ -128,7 +148,7 @@
             <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
             <span>June, 2023, 6:07 pm</span>
           </div>
-          <p>{{news.body}}</p>
+          <p>{{news.body|truncatewords:20}}</p>
         </div>
         <div data-aos="fade-up" class="news-section-content_img">
           <img src="/media/{{news.image}}" alt="" />
@@ -143,13 +163,13 @@
 
 <!-- campus  -->
 {% if explores %}
-<div class="explore">
+<div id="explore" class="explore">
   <div data-aos="fade-up" class="explore-heading">
-    <h1>CAMPUS</h1>
+    <h1>EXPLORE</h1>
   </div>
   <div class="explore-infra-list">
     {% for explore in explores %}
-    <a href="">
+    <a href="{% url 'explore-details' explore.id %}">
       <div data-aos="fade-up" class="explore-infra">
         <img src="/media/{{explore.image}}" alt="" />
         <p>{{explore.name}}</p>
@@ -163,13 +183,13 @@
 
 <!-- fests  -->
 {% if fests %}
-<div class="fests">
+<div id="fests" class="fests">
   <div data-aos="fade-up" class="fest-heading">
     <h1>FESTS</h1>
   </div>
   <div class="fest-list">
     {% for fest in fests %}
-    <a href="">
+    <a href="{% url 'fest-details' fest.id %}">
       <div data-aos="fade-up" class="fest">
         <img src="/media/{{fest.logo}}" alt="" />
         <p>{{fest.name}}</p>

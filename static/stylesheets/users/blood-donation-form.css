@@ -1,0 +1,207 @@
+.blood-donation-form {
+    padding: 2rem 20rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .blood-donation-form-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .blood-donation-form-heading h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  .blood-donation-form-heading p {
+    text-align: center;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 25rem;
+  }
+  
+  .blood-donation-form_fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 2rem;
+  }
+  .blood-donation-form_field{
+    display: flex;
+    flex-direction: column;
+     margin-bottom: 1rem;
+  }
+
+  .blood-donation-form_field label{
+    font-family: var(--font-para);
+    color: var(--third-color);
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 0.15rem;
+  }
+
+  .blood-donation-form_field input , select{
+    width: 100%;
+    font-weight: 500;
+    font-family: var(--font-para);
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 2px solid var(--third-color);
+  }
+
+
+  .error{
+    padding: 0.15rem;
+    color: #e92121;
+    font-family: var(--font-para);
+  }
+
+  /* alert message of rollno actually exist  */
+  .alert{
+    margin-top: 2rem;
+    display: flex;
+    align-self: center;
+    background-color: #e92121;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: var(--primary-color);
+    font-family: var(--font-para);
+  }
+
+
+  .blood-donation-form-cta {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .blood-donation-form-cta p {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  .blood-donation-form-cta button {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-family: var(--font-para);
+    font-weight: 600;
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #e92121;
+    border: none;
+    outline: none;
+  }
+  
+
+  @media screen and (max-width: 1024px) {
+    .blood-donation-form {
+      padding: 2rem 10rem;
+    }
+    .blood-donation-form-heading p {
+      font-size: 1rem;
+      max-width: rem;
+    }
+    
+    .blood-donation-form_fields {
+      padding-top: 2rem;
+      width: 100%;
+    }
+    
+  }
+  
+  @media screen and (max-width: 768px) {
+    .blood-donation-form {
+      padding: 2rem 4rem;
+    }
+    .blood-donation-form-heading p {
+      font-size: 1rem;
+      max-width: rem;
+    }
+    
+    .blood-donation-form_fields {
+      padding-top: 2rem;
+      width: 100%;
+    }
+  }
+  
+  
+  @media screen and (max-width: 430px) {
+    .blood-donation-form {
+      padding: 0.5rem 1rem;
+      padding-top: 2rem;
+      padding-bottom: 5rem;
+    }
+    
+    .blood-donation-form-heading {
+      gap: 1rem;
+    }
+    
+    .blood-donation-form-heading h1 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    
+    .blood-donation-form-heading p {
+      font-size: 1rem;
+      max-width: 20rem;
+    }
+    
+    .blood-donation-form_fields {
+      padding-top: 2rem;
+      width: 100%;
+    }
+    .blood-donation-form_field{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+  
+    .blood-donation-form_field label{
+      font-size: 0.8rem;
+      padding-bottom: 0.15rem;
+    }
+  
+    .blood-donation-form_field input , select{
+      padding: 4px 6px;
+      border-radius: 8px;
+      border: 2px solid var(--third-color);
+    }
+  
+    .blood-donation-form-cta {
+      padding-top: 1rem;
+    }
+    
+    .blood-donation-form-cta p {
+      font-size: 0.8rem;
+    }
+    
+    .blood-donation-form-cta button {
+      font-size: 0.8rem;
+    }
+  }
+  

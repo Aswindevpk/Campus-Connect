@@ -1,0 +1,109 @@
+.fest-content {
+    display: flex;
+    padding: 2rem 6rem;
+  }
+  
+  .fest-content-head {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .fest-content-head img {
+    width: 8.25rem;
+    height: 8.25rem;
+    border-radius: 8.25rem;
+  }
+  
+  .fest-content-head_main {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fest-content-head_main h1 {
+    color: var(--primary-color);
+    text-align: right;
+    font-size: 2.25rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  .fest-content-head_main p {
+    color: var(--primary-color);
+    text-align: right;
+    font-size: 1.125rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .fest-content {
+      display: flex;
+      padding: 2rem 3rem;
+    }
+  
+    .fest-content-head img {
+      width: 8.25rem;
+      height: 8.25rem;
+      border-radius: 8.25rem;
+    }
+  
+    .fest-content-head_main h1 {
+      font-size: 2rem;
+    }
+  
+    .fest-content-head_main p {
+      font-size: 1.125rem;
+    }
+  }
+  
+  @media screen and (max-width: 769px) {
+      .fest-content {
+          display: flex;
+          padding: 2rem 2rem;
+        }
+      
+        .fest-content-head img {
+          width: 8.25rem;
+          height: 8.25rem;
+          border-radius: 8.25rem;
+        }
+      
+        .fest-content-head_main h1 {
+          font-size: 2rem;
+        }
+      
+        .fest-content-head_main p {
+          font-size: 1rem;
+          width: 20rem;
+        }
+  }
+  
+  @media screen and (max-width: 426px) {
+      .fest-content {
+          display: flex;
+          padding: 2rem 1rem;
+        }
+        
+      
+        .fest-content-head img {
+          width: 5.5rem;
+          height: 5.5rem;
+          border-radius: 5.5rem;
+        }
+      
+        .fest-content-head_main h1 {
+          font-size: 1.5rem;
+        }
+      
+        .fest-content-head_main p {
+          font-size: 0.8rem;
+          width: 15rem;
+        }
+  }
+  

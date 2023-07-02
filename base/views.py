@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Carousel, Bloodreq,Program,News,Explore,Fests,BloodDonation,BloodDonatedStudents
+from .models import Carousel, Bloodreq,Program,News,Explore,Fests,BloodDonation,BloodDonatedStudents,Community,Exploreimg
 from .forms import BloodDonationForm, Bloodreqform ,UserForm
 from datetime import datetime
 from django.contrib.auth.models import User
@@ -27,17 +27,14 @@ def logoutUser(request):
     return redirect('home')
 
 
-def creators(request):
-    context = {}
-    return render(request, 'creators.html' ,context)
-
 def home(request):
     carousels = Carousel.objects.all()
     blood_req = Bloodreq.objects.all()
     events = Program.objects.order_by('date')
-    newses = News.objects.order_by('-created')[0:3]  #limits the news to 5
+    newses = News.objects.order_by('-created')[0:4]  #limits the news to 4 accending order by created
     explores = Explore.objects.all()
     fests = Fests.objects.all()
+    communities = Community.objects.all() 
 
     for event in events:
         # deletes the event when the time is up 0 for events
@@ -51,25 +48,43 @@ def home(request):
              'events':events, 
              'newses':newses, 
              'explores':explores,
-             'fests':fests}
+             'fests':fests,
+             'communities':communities}
     return render(request,'home.html',context)
 
-def news(request, pk):
+
+# program details page render 
+def programDetails(request, pk):
+    program = Program.objects.get(id=pk)
+    context = {'program':program}
+    return render(request,'users/program-details.html',context)
+
+# news details page render 
+def newsDetails(request, pk):
     news = News.objects.get(id=pk)
     context = {'news':news}
-    return render(request,'news.html',context)
+    return render(request,'users/news-details.html',context)
 
-
-def explore(request, pk):
+# explore details page render 
+def exploreDetails(request, pk):
     explore = Explore.objects.get(id=pk)
-    context = {'explore':explore}
-    return render(request,'explore.html',context)
+    images = Exploreimg.objects.filter(explore=pk) 
+    context = {'explore':explore, 'images':images}
+    return render(request,'users/explore-details.html',context)
 
-def fests(request, pk):
-    fests = Fests.objects.get(id=pk)
-    context = {'fests':fests}
-    return render(request,'fests.html',context)
+# fest details page render 
+def festDetails(request, pk):
+    fest = Fests.objects.get(id=pk)
+    context = {'fest':fest}
+    return render(request,'users/fest-details.html',context)
 
+# fest details page render 
+def communityDetails(request, pk):
+    community = Community.objects.get(id=pk)
+    context = {'community':community}
+    return render(request,'users/fest-details.html',context)
+
+# blood donation page renders and save the user data 
 def donateBlood(request):
     form = BloodDonationForm()
     if request.method == 'POST':
@@ -81,17 +96,14 @@ def donateBlood(request):
             return redirect('blood-donation-response')
 
     context = {'form':form}
-    return render(request,'blood_donation_form.html',context)
+    return render(request,'users/blood_donation_form.html',context)
 
+# if the blood donation form is submitted suceessfully 
 def donateBloodRes(request):
-    return render(request, 'blood_donation_response.html')
+    return render(request, 'blood-donation-response.html')
 
-def program(request, pk):
-    program_details = Program.objects.get(id=pk)
-    context={
-        'program_details': program_details
-    }
-    return render(request,'news.html',context)
+
+
 
 @login_required(login_url='loginpage')
 def donateBloodAdmin(request):

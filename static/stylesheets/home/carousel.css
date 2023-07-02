@@ -99,12 +99,12 @@
       /* height: 25.125rem; */
     }
     .carousel-image{
-      max-width: 100%;
-
+      /* max-width: 100%; */
     }
     .carousel-img {
-      width: 100%;
+      /* width: 100%; */
       max-width: 100%;
+      /* height: 20rem; */
       border-radius: 0.5rem;
     }
   }

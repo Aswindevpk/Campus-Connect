@@ -57,6 +57,9 @@
 .navbar-menu_toggle-close {
   display: none;
 }
+.navbar-menu {
+  display: none;
+} 
 
 .navbar-menu_container {
   display: none;

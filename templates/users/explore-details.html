@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'stylesheets/users/explore-details.css' %}">
+<div class="explore-page-content">
+    <div class="explore-page-content-details">
+        <h1>{{explore.name}}</h1>
+        <div class="explore-page-content-details_para">
+            <p>{{explore.description}}</p>
+        </div>
+    </div>
+    <div class="explore-page-content-img">
+        <img src="/media/{{explore.image}}" alt="">
+    </div>
+</div>
+{% comment %} {% for image in images %}
+    <img src="/media/{{image.image}}" alt="">
+{% endfor %} {% endcomment %}
+{% endblock content %}

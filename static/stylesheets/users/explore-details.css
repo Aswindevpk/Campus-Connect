@@ -1,0 +1,103 @@
+.explore-page-content {
+    display: flex;
+    padding: 2rem 6rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.explore-page-content-details{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: space-between;
+}
+.explore-page-content-details h1{
+    color: var(--primary-color);
+    font-size: 2.25rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.explore-page-content-details_para p{
+    padding-top: 0.5rem;
+    color: var(--third-color);
+    font-size: 1rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.explore-page-content-img img{
+    width: 33.414rem;
+    height: 42.1875rem;
+    border-radius: 1.5rem;
+    background: cover no-repeat;
+}
+
+@media screen and (max-width: 1024px) {
+    .explore-page-content {
+        padding: 2rem 3rem;
+    }
+    
+
+    .explore-page-content-details h1{
+        font-size: 2rem;
+    }
+    .explore-page-content-details_para p{
+        padding-top: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    .explore-page-content-img img{
+        width: 23.414rem;
+        height: 100%;
+        border-radius: 1rem;
+    }
+}
+
+@media  screen and (max-width: 769px){
+    .explore-page-content {
+        padding: 2rem 2rem;
+    }
+
+    .explore-page-content-details h1{
+        font-size: 2rem;
+    }
+
+    .explore-page-content-details p{
+        padding-top: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    .explore-page-content-img img{
+        width: 16.414rem;
+        height: 100%;
+        border-radius: 1rem;
+    }
+}
+
+@media  screen and (max-width: 426px){
+    .explore-page-content {
+        padding: 1rem 1rem;
+        flex-direction:column-reverse;
+    }
+
+    .explore-page-content-details h1{
+        font-size: 1.5rem;
+    }
+
+    .explore-page-content-details_para p{
+        padding-top: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .explore-page-content-img img{
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+    }
+}
