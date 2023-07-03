@@ -85,13 +85,9 @@
             <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
             <p>{{event.time}}</p>
           </div>
-          {% if event.community %}
+          {% if event.created_by %}
           <div class="program-content_conducted">
-            <p>{{event.community}}</p>
-          </div>
-          {% else %}
-          <div class="program-content_conducted">
-            <p>{{event.fest}}</p>
+            <p>{{event.created_by}}</p>
           </div>
           {% endif %}
         </div>

@@ -80,8 +80,8 @@ class Program(models.Model):
     date = models.DateField(null=True)
     link = models.URLField(null=True,blank=True)
     venue = models.CharField(max_length=200)
-    community = models.ForeignKey(Community, on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
-    fest =models.ForeignKey(Fests, on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
+    created_by = models.CharField(max_length=200,blank=True)
+
 
     def __str__(self):
         return self.name
@@ -101,8 +101,7 @@ class News(models.Model):
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=get_image_path,default='default_image.jpg')
-    community = models.ForeignKey(Community, on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
-    fest =models.ForeignKey(Fests, on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
+    created_by = models.CharField(max_length=200,blank=True)
 
      # before saving the instance we’re reducing the image
     def save(self, *args, **kwargs):
@@ -149,6 +148,7 @@ class Carousel(models.Model):
     image = models.ImageField(upload_to=get_image_path)
     program = models.ForeignKey(Program, on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
     news = models.ForeignKey(News,on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
+    created_by = models.CharField(max_length=200,blank=True)
 
 
     # before saving the instance we’re reducing the image

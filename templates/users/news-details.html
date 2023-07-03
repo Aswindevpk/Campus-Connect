@@ -5,13 +5,9 @@
 <link rel="stylesheet" href="{% static 'stylesheets/users/news-details.css' %}">
 <div class="news-page-content">
     <div class="news-page-content-details">
-        {% if news.community %}
+        {% if news.created_by %}
         <div class="news-page-content-details_conducted">
-          <span>{{news.community}}</span>
-        </div>
-        {% else %}
-        <div class="news-page-content-details_conducted">
-          <span>{{news.fest}}</span>
+          <span>{{news.created_by}}</span>
         </div>
         {% endif %}
         <h1>{{news.title}}</h1>

@@ -127,7 +127,7 @@ def donateBloodAdmin(request):
     return render(request,'blood_donation_admin.html',context)
 
 
-@login_required(login_url='loginpage')
+@login_required()
 def bloodDonatedAdd(request,pk):
     bloodDonor = BloodDonation.objects.get(id=pk)
     newDonation = BloodDonatedStudents()
@@ -137,7 +137,7 @@ def bloodDonatedAdd(request,pk):
     newDonation.phone = bloodDonor.phone
     newDonation.save()
     bloodDonor.delete()
-    return redirect('blood-donation-admin')
+    return None
 
 
 @login_required(login_url='loginpage')

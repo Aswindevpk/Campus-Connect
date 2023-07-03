@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Explore,Carousel,Bloodreq,News,Program,BloodDonation,Fests,BloodDonatedStudents,Community,Course,Exploreimg
+from .models import *
 
 # Register your models here.
 

@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .custom_admin import blood_donation_admin_site , communities_admin_site ,fests_admin_site
+
 
 urlpatterns = [
     path('',views.home, name='home' ),
@@ -15,4 +17,9 @@ urlpatterns = [
     path('bloodreq-del/<str:pk>',views.bloodreqDel, name='bloodreq-del'),
     path('blood-donated-add/<str:pk>',views.bloodDonatedAdd, name='blood-donated-add'),
     path('blood-donation-response',views.donateBloodRes,name='blood-donation-response'),
+    #admin
+    path('admin/blood',blood_donation_admin_site.urls,name='blood'),
+    path('admin/communities',communities_admin_site.urls,name='com'),
+    path('admin/fests',fests_admin_site.urls,name='fest'),
+    
 ]

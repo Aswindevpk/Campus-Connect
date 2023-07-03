@@ -57,12 +57,20 @@
 
 <script>
     $(document).ready(function() {
+      $('#id_name').on('keyup input', function() {
+        var originalValue = $(this).val();
+        var capitalizedValue = originalValue.toUpperCase();
+        $(this).val(capitalizedValue);
+      });
+      $('#id_roll_no').on('keyup input', function() {
+        var originalValue = $(this).val();
+        var capitalizedValue = originalValue.toUpperCase();
+        $(this).val(capitalizedValue);
+      });
       // Add custom validation method
       $.validator.addMethod('rollnoPattern', function(value, element) {
         return this.optional(element) || /^[0-9]{2}.*[0-9]{2}$/.test(value);
       }, 'Invalid format.');
-
-
         $('#donationForm').validate({
           rules: {
             name: {
