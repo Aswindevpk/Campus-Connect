@@ -90,6 +90,18 @@ DATABASES = {
     }
 }
 
+# for production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'devagiricampus',
+#         'USER': 'devagiricampus',
+#         'PASSWORD': 'campus@devagiri2020',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -128,13 +140,15 @@ USE_TZ = True
 # for development
 STATIC_URL = "static/"
 
+# for development
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-
+# for production
 # STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 # MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
 MEDIA_URL = '/media/'
 
 # Default primary key field type
@@ -143,12 +157,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#default passwords
-# admin : bcasjc
-# pass  : admin
 
-# blood
-# Zoology@123
 
 
 
