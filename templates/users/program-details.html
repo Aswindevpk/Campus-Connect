@@ -23,14 +23,14 @@
     <div class="program-page-content_para">
         <p>{{program.description}}</p>
     </div>
-    <div class="program-page-content-tc">
+    {% comment %} <div class="program-page-content-tc">
         <h1>Terms & Conditions</h1>
         <ul>
             <li>If users abuse your website or mobile app in any way</li>
             <li>If users can post content on your website or mobile app</li>
             <li>If you sell products or services, you could cancel specific orders </li>
         </ul>
-    </div>
+    </div> {% endcomment %}
     {% if program.link %}
     <div class="program-page-content-cta">
         {% comment %} <p>accepts Terms & Conditions</p> {% endcomment %}
