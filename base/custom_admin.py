@@ -88,6 +88,7 @@ class NewsAdmin(ModelAdmin):
         return qs
 
 class CarouselAdmin(ModelAdmin):
+    exclude= ('created_by',) 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'news':
             # Filter the queryset based on the current user
@@ -97,6 +98,20 @@ class CarouselAdmin(ModelAdmin):
             kwargs['queryset'] = Program.objects.filter(created_by__exact=request.user.username)
 
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    
+    def save_model(self, request, obj, form, change):
+        # Set the username of the user who created the instance
+        obj.created_by = request.user.username
+        # Save the instance
+        super().save_model(request, obj, form, change)
+
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        # Apply filter to the queryset based on the name field
+        username = request.user.username
+        qs = qs.filter(created_by=username)
+        return qs
     
 
 class CommunityAdmin(ModelAdmin):

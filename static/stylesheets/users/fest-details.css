@@ -1,6 +1,7 @@
 .fest-content {
     display: flex;
     padding: 2rem 6rem;
+    flex-direction: column;
   }
   
   .fest-content-head {
@@ -38,6 +39,16 @@
     font-family: var(--font-para);
     font-style: normal;
     font-weight: 400;
+    line-height: normal;
+  }
+
+  .fest-content-desc p{
+    padding-top: 1rem;
+    color: var(--third-color);
+    font-size: 1rem;
+    font-family: var(--font-para);
+    font-style: normal;
+    font-weight: 500;
     line-height: normal;
   }
   

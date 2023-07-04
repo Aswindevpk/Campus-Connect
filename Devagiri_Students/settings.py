@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'Devagiri_Students.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'devagiricampus',
-        'USER': 'devagiriDatabase',
-        'PASSWORD': 'iedc@bca',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'campusdb',
+        'USER': 'campususer',
+        'PASSWORD': 'campus@devagiri2023',
         'HOST': 'localhost',  
-        'PORT': '3306',  
+        'PORT': '5432',  
     }
 }
 

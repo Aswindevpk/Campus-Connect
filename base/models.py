@@ -16,10 +16,18 @@ from django.core.files import File
 
 
 class Community(models.Model):
+    def get_image_path(instance, filename):
+        # Generate the filename using the id and extension from the original filename
+        ext = filename.split('.')[-1]
+        filename = f"{instance.id}.{ext}"
+        # Return the final file path
+        return f"media/communities_logos/{filename}"
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
-    full_form = models.TextField(blank=True)
+    about = models.TextField(blank=True)
     description = models.TextField()
+    logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg',blank=True)
 
     def __str__(self):
         return self.name
@@ -35,7 +43,7 @@ class Fests(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name=models.CharField(max_length=200 ,null=True)
-    full_form = models.TextField(blank=True)
+    about = models.TextField(blank=True)
     description = models.TextField()
     logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg')
 
@@ -244,7 +252,7 @@ class Exploreimg(models.Model):
     
 class Course(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -304,6 +312,7 @@ def delete_image_file(sender, instance, **kwargs):
 
 
 @receiver(pre_delete, sender=Fests)
+@receiver(pre_delete, sender=Community)
 def delete_image_file(sender, instance, **kwargs):
     # Check if the instance has an image file
     if instance.logo:

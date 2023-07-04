@@ -82,7 +82,7 @@ def festDetails(request, pk):
 def communityDetails(request, pk):
     community = Community.objects.get(id=pk)
     context = {'community':community}
-    return render(request,'users/fest-details.html',context)
+    return render(request,'users/community-details.html',context)
 
 # blood donation page renders and save the user data 
 def donateBlood(request):

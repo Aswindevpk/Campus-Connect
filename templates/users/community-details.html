@@ -5,14 +5,14 @@
 <link rel="stylesheet" href="{% static 'stylesheets/users/fest-details.css' %}">
 <div class="fest-content">
     <div class="fest-content-head">
-        <img src="/media/{{fest.logo}}" alt="">
+        <img src="/media/{{community.logo}}" alt="">
         <div class="fest-content-head_main">
-            <h1>{{fest.name}}</h1>
-            <p>{{fest.about}}</p>
+            <h1>{{community.name}}</h1>
+            <p>{{community.about}}</p>
         </div>
     </div>
     <div class="fest-content-desc">
-        <p>{{fest.description}}</p>
+        <p>{{community.description}}</p>
     </div>
 </div>
 {% endblock content %}
