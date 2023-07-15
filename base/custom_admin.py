@@ -12,12 +12,27 @@ class bloodDonationAdminSite(AdminSite):
     index_title = 'Blood Donation Home'
 
 class BloodDonationAdmin(ModelAdmin):
-    list_display = ('name','blood_type', 'roll_no','course','phone_number_link')  
+    list_display = ('name','blood_type', 'roll_no','course','phone_number_link')
+    actions = ['add_to_donated']
     def phone_number_link(self, obj):
         # Format the phone number as a link
         phone_number = obj.phone
         link = f'<a href="tel:{phone_number}">{phone_number}</a>'
         return format_html(link)
+    
+    def add_to_donated(self, request, queryset):
+        for obj in queryset:
+            print(obj)
+            bloodDonated = BloodDonatedStudents()
+            bloodDonated.name = obj.name
+            bloodDonated.blood_type = obj.blood_type
+            bloodDonated.roll_no = obj.roll_no
+            bloodDonated.phone = obj.phone
+            bloodDonated.save()
+
+
+    
+    add_to_donated.short_description = 'Add to Donated List'
 
 
 class BloodDonatedStudentsAdmin(ModelAdmin):

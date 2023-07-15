@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'stylesheets/users/club-details.css' %}">
+<div class="club-content">
+    <div class="club-content-head">
+        <div class="club-content-head_main">
+            <h1>{{club.name}}</h1>
+            <p>{{club.about}}</p>
+        </div>
+    </div>
+    <div class="club-content-desc">
+        <p>{{club.description}}</p>
+    </div>
+</div>
+{% endblock content %}

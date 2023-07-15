@@ -3,6 +3,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'stylesheets/users/fest-details.css' %}">
+<link rel="stylesheet" href="{% static 'stylesheets/home/programs.css' %}" />
 <div class="fest-content">
     <div class="fest-content-head">
         <img src="/media/{{community.logo}}" alt="">
@@ -15,4 +16,38 @@
         <p>{{community.description}}</p>
     </div>
 </div>
+{% if events %}
+<div class="program-section">
+    {% for event in events  %}
+    <div data-aos="fade-up" class="program-content">
+      <div class="program-content-body">
+        <div data-aos="fade-up" class="program-content-body_details">
+          <div class="program-content_date">
+            <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
+            <p>{{event.date}}</p>
+          </div>
+          <div class="program-content_time">
+            <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
+            <p>{{event.time}}</p>
+          </div>
+          {% comment %} {% if event.created_by %}
+          <div class="program-content_conducted">
+            <p>{{event.created_by}}</p>
+          </div>
+          {% endif %} {% endcomment %}
+        </div>
+        <div data-aos="fade-up" class="program-content-body_main">
+          <h2>{{event.name}}</h2>
+        </div>
+      </div>
+      <div data-aos="fade-up" class="program-content-cta">
+        <a href="{% url 'program-details' event.id %}">
+          <img src="{% static 'assets/programs-cta-arrow.svg' %}" alt="" />
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 {% endblock content %}

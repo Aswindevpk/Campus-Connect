@@ -81,6 +81,7 @@
   }
   .explore-infra-list {
     gap: 0.75rem;
+    justify-content: space-between;
   }
 
   .explore-infra img {

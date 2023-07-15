@@ -85,18 +85,18 @@
             <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
             <p>{{event.time}}</p>
           </div>
-          {% if event.created_by %}
+          {% comment %} {% if event.created_by %}
           <div class="program-content_conducted">
             <p>{{event.created_by}}</p>
           </div>
-          {% endif %}
+          {% endif %} {% endcomment %}
         </div>
         <div data-aos="fade-up" class="program-content-body_main">
           <h2>{{event.name}}</h2>
         </div>
       </div>
       <div data-aos="fade-up" class="program-content-cta">
-        <a href="{% url 'program-details' event.id %}">
+        <a href="{% url 'program-details' event.slug %}">
           <img src="{% static 'assets/programs-cta-arrow.svg' %}" alt="" />
         </a>
       </div>
@@ -106,19 +106,18 @@
 </div>
 {% endif %}
 
-
-
-<!-- communities  -->
-{% if communities %}
-<div class="communities">
-  <div data-aos="fade-up" class="communities-heading">
+<!-- campus  -->
+{% if explores %}
+<div id="" class="communities">
+  <div data-aos="fade-up" class="explore-heading">
     <h1>COMMUNITIES</h1>
   </div>
-  <div data-aos="fade-up" class="communities-section">
-    {% for community in communities  %}
-    <a href="{% url 'community-details' community.id %}">
-      <div class="community">
-        <h1>{{community.name | upper}}</h1>
+  <div class="explore-infra-list">
+    {% for community in communities %}
+    <a href="{% url 'community-details' community.slug %}">
+      <div data-aos="fade-up" class="explore-infra">
+        <img src="/media/{{community.logo}}" alt="" />
+        <p>{{community.name}}</p>
       </div>
     </a>
     {% endfor %}
@@ -128,17 +127,36 @@
 
 
 
+<!-- fests  -->
+{% if fests %}
+<div id="fests" class="fests">
+  <div data-aos="fade-up" class="fest-heading">
+    <h1>FESTS</h1>
+  </div>
+  <div class="fest-list">
+    {% for fest in fests %}
+    <a href="{% url 'fest-details' fest.slug %}">
+      <div data-aos="fade-up" class="fest">
+        <img src="/media/{{fest.logo}}" alt="" />
+        <p>{{fest.name}}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
 
 
 <!-- news  -->
 {% if newses %}
 <div id="news" class="news">
   <div data-aos="fade-up" class="news-heading">
-    <h1>NEWS</h1>
+    <h1>UPDATES</h1>
   </div>
   <div class="news-section">
     {% for news in newses  %}
-    <a href="{% url 'news-details' news.id %}">
+    <a href="{% url 'news-details' news.slug %}">
       <div class="news-section-content">
         <div data-aos="fade-up" class="news-section-content_main">
           <h1>{{news.title}}</h1>
@@ -167,7 +185,7 @@
   </div>
   <div class="explore-infra-list">
     {% for explore in explores %}
-    <a href="{% url 'explore-details' explore.id %}">
+    <a href="{% url 'explore-details' explore.slug %}">
       <div data-aos="fade-up" class="explore-infra">
         <img src="/media/{{explore.image}}" alt="" />
         <p>{{explore.name}}</p>
@@ -179,23 +197,25 @@
 {% endif %}
 
 
-<!-- fests  -->
-{% if fests %}
-<div id="fests" class="fests">
-  <div data-aos="fade-up" class="fest-heading">
-    <h1>FESTS</h1>
-  </div>
-  <div class="fest-list">
-    {% for fest in fests %}
-    <a href="{% url 'fest-details' fest.id %}">
-      <div data-aos="fade-up" class="fest">
-        <img src="/media/{{fest.logo}}" alt="" />
-        <p>{{fest.name}}</p>
-      </div>
-    </a>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
+ <!-- communities  -->
+ {% if clubs %}
+ <div class="communities">
+   <div data-aos="fade-up" class="communities-heading">
+     <h1>CLUBS</h1>
+   </div>
+   <div data-aos="fade-up" class="communities-section">
+     {% for club in clubs  %}
+     <a href="{% url 'club-details' club.slug %}">
+       <div class="community">
+         <h1>{{club.name | upper}}</h1>
+       </div>
+     </a>
+     {% endfor %}
+   </div>
+ </div>
+ {% endif %} 
+
+
+
 
 {%endblock content%}

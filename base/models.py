@@ -8,10 +8,12 @@ import os
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-#for image manipulation to compress the image and change png - jpg
-from PIL import Image
-from io import BytesIO
-from django.core.files import File
+#for automatic slug creation
+from autoslug import AutoSlugField
+
+
+
+
 
 
 
@@ -19,7 +21,7 @@ class Community(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.id}.{ext}"
+        filename = f"{instance.slug}.{ext}"
         # Return the final file path
         return f"media/communities_logos/{filename}"
     
@@ -27,7 +29,18 @@ class Community(models.Model):
     name = models.CharField(max_length=25)
     about = models.TextField(blank=True)
     description = models.TextField()
-    logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg',blank=True)
+    logo=models.ImageField(upload_to=get_image_path, default=None,blank=True)
+    slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
+
+    def __str__(self):
+        return self.name
+
+class Clubs(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
+    name = models.CharField(max_length=25)
+    about = models.TextField(blank=True)
+    description = models.TextField()   
+    slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True) 
 
     def __str__(self):
         return self.name
@@ -37,7 +50,7 @@ class Fests(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.id}.{ext}"
+        filename = f"{instance.name}.{ext}"
         # Return the final file path
         return f"media/fest_logos/{filename}"
     
@@ -46,35 +59,7 @@ class Fests(models.Model):
     about = models.TextField(blank=True)
     description = models.TextField()
     logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg')
-
-
-    # before saving the instance we’re reducing the image
-    def save(self, *args, **kwargs):
-        self.logo =self.convert_png_to_jpg(self.logo)
-        new_image = self.reduce_image_size(self.logo)
-        self.logo = new_image
-        super().save(*args, **kwargs) 
-
-    def convert_png_to_jpg(self, logo):
-        if logo.name.lower().endswith('.png'):
-            new_image = BytesIO()
-            with Image.open(logo) as img:
-                img = img.convert('RGB')
-                img.save(new_image, 'JPEG')
-
-            # Create a new image file with the converted JPEG data
-            new_image.seek(0)
-            return File(new_image, name=logo.name.replace('.png', '.jpg'))
-        return logo 
-
-    def reduce_image_size(self, image):
-        img_size = image.size //1024
-        img = Image.open(image)
-        thumb_io = BytesIO()
-        Quality = int((200 // img_size) * 70)
-        img.save(thumb_io, 'jpeg', quality=Quality)
-        image = File(thumb_io, name=image.name)
-        return image
+    slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
     def __str__(self):
         return self.name
@@ -89,18 +74,17 @@ class Program(models.Model):
     link = models.URLField(null=True,blank=True)
     venue = models.CharField(max_length=200)
     created_by = models.CharField(max_length=200,blank=True)
-
+    slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
     def __str__(self):
         return self.name
-
 
 
 class News(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.id}.{ext}"
+        filename = f"{instance.title}.{ext}"
         # Return the final file path
         return f"media/news_images/{filename}"
        
@@ -108,46 +92,20 @@ class News(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to=get_image_path,default='default_image.jpg')
+    image = models.ImageField(upload_to=get_image_path)
     created_by = models.CharField(max_length=200,blank=True)
-
-     # before saving the instance we’re reducing the image
-    def save(self, *args, **kwargs):
-        self.image =self.convert_png_to_jpg(self.image)
-        new_image = self.reduce_image_size(self.image)
-        self.image = new_image
-        super().save(*args, **kwargs) 
-
-    def convert_png_to_jpg(self, image):
-        if image.name.lower().endswith('.png'):
-            new_image = BytesIO()
-            with Image.open(image) as img:
-                img = img.convert('RGB')
-                img.save(new_image, 'JPEG')
-
-            # Create a new image file with the converted JPEG data
-            new_image.seek(0)
-            return File(new_image, name=image.name.replace('.png', '.jpg'))
-        return image 
-
-    def reduce_image_size(self, image):
-        img_size = image.size //1024
-        img = Image.open(image)
-        thumb_io = BytesIO()
-        Quality = int((200 // img_size) * 70)
-        img.save(thumb_io, 'jpeg', quality=Quality)
-        image = File(thumb_io, name=image.name)
-        return image
+    slug = AutoSlugField(populate_from='title',unique=True,default=None,null=True)
 
     def __str__(self):
         return self.title
     
 
+
 class Carousel(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.id}.{ext}"
+        filename = f"{instance.title}.{ext}"
         # Return the final file path
         return f"media/carousel_images/{filename}"
     
@@ -158,35 +116,6 @@ class Carousel(models.Model):
     news = models.ForeignKey(News,on_delete=models.CASCADE,default=uuid.uuid4,null=True,blank=True)
     created_by = models.CharField(max_length=200,blank=True)
 
-
-    # before saving the instance we’re reducing the image
-    def save(self, *args, **kwargs):
-        self.image =self.convert_png_to_jpg(self.image)
-        new_image = self.reduce_image_size(self.image)
-        self.image = new_image
-        super().save(*args, **kwargs) 
-
-    def convert_png_to_jpg(self, image):
-        if image.name.lower().endswith('.png'):
-            new_image = BytesIO()
-            with Image.open(image) as img:
-                img = img.convert('RGB')
-                img.save(new_image, 'JPEG')
-
-            # Create a new image file with the converted JPEG data
-            new_image.seek(0)
-            return File(new_image, name=image.name.replace('.png', '.jpg'))
-        return image 
-
-    def reduce_image_size(self, image):
-        img_size = image.size //1024
-        img = Image.open(image)
-        thumb_io = BytesIO()
-        Quality = int((200 // img_size) * 70)
-        img.save(thumb_io, 'jpeg', quality=Quality)
-        image = File(thumb_io, name=image.name)
-        return image
-
     def __str__(self):
         return self.title
 
@@ -196,7 +125,7 @@ class Explore(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.id}.{ext}"
+        filename = f"{instance.name}.{ext}"
         # Return the final file path
         return f"media/explore_images/{filename}"
     
@@ -205,34 +134,7 @@ class Explore(models.Model):
     description = models.TextField()
     created_by = models.CharField(max_length=200)
     image = models.ImageField(upload_to=get_image_path)
-
-     # before saving the instance we’re reducing the image
-    def save(self, *args, **kwargs):
-        self.image =self.convert_png_to_jpg(self.image)
-        new_image = self.reduce_image_size(self.image)
-        self.image = new_image
-        super().save(*args, **kwargs) 
-
-    def convert_png_to_jpg(self, image):
-        if image.name.lower().endswith('.png'):
-            new_image = BytesIO()
-            with Image.open(image) as img:
-                img = img.convert('RGB')
-                img.save(new_image, 'JPEG')
-
-            # Create a new image file with the converted JPEG data
-            new_image.seek(0)
-            return File(new_image, name=image.name.replace('.png', '.jpg'))
-        return image 
-
-    def reduce_image_size(self, image):
-        img_size = image.size //1024
-        img = Image.open(image)
-        thumb_io = BytesIO()
-        Quality = int((200 // img_size) * 70)
-        img.save(thumb_io, 'jpeg', quality=Quality)
-        image = File(thumb_io, name=image.name)
-        return image
+    slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
     def __str__(self):
         return self.name
