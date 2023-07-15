@@ -20,7 +20,7 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .explore-infra {
@@ -31,14 +31,14 @@
 }
 
 .explore-infra img {
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 60px;
 }
 
 .explore-infra p {
-  color: var(--third, #b6b6ff);
-  font-size: 1.125rem;
+  color: var(--primary-color);
+  font-size: 1rem;
   font-family: var(--font-title);
   font-weight: 700;
 }
@@ -66,11 +66,23 @@
   .explore {
     padding: 1rem 2rem;
   }
+  .explore-infra-list {
+    gap: 1.5rem;
+  }
+
+  .explore-infra img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .explore-infra p {
+    font-size: 1rem;
+  }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 426px) {
   .explore {
-    padding: 1rem 1rem;
+    padding: 1.5rem 0.5rem;
   }
 
   .explore-heading h1 {
@@ -87,7 +99,7 @@
   .explore-infra img {
     width: 4.5rem;
     height: 4.5rem;
-    border-radius: 40px;
+    border-radius: 8px;
   }
   .explore-infra p {
     font-size: 0.75rem;

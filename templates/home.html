@@ -19,11 +19,11 @@
   <div data-aos="fade-up" class="carousel-image">
     {% for carousel in carousels %} 
       {% if carousel.news %}
-        <img class="carousel-img" onclick="gotoUrl('{% url 'news-details' carousel.news.id %}')" src="/media/{{carousel.image}}" alt="" />
+        <img class="carousel-img" onclick="gotoUrl('{% url 'news' carousel.news.id %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% elif carousel.program %}
-      <img class="carousel-img" onclick="gotoUrl('{% url 'program-details' carousel.program.id %}')" src="/media/{{carousel.image}}" alt="" />
+      <img class="carousel-img" onclick="gotoUrl('{% url 'program' carousel.program.id %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% else %}
-      <img class="carousel-img" src="/media/{{carousel.image}}" alt="" />
+      <img class="carousel-img" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% endif %}
     {% endfor %}
   </div>
@@ -40,7 +40,7 @@
       images[currentIndex].style.display = "none";
       currentIndex = (currentIndex + 1) % images.length;
       images[currentIndex].style.display = "block";
-    }, 3000);
+    }, 4000);
   });
   function gotoUrl(url){
     window.location.href =url ;
@@ -68,7 +68,7 @@
 
 <!-- programs  -->
 {% if events %}
-<div id="#programs" class="program">
+<div id="programs" class="program">
   <div data-aos="fade-up" class="program-heading">
     <h1>PROGRAMS</h1>
   </div>
@@ -78,26 +78,26 @@
       <div class="program-content-body">
         <div data-aos="fade-up" class="program-content-body_details">
           <div class="program-content_date">
-            <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
+            <img src="{% static 'assets/calendar-outline.svg' %}" title="Devagiri-campus-{{event.slug}}" alt="devagiri-campus-program-{{event.name}}" loading="lazy"/>
             <p>{{event.date}}</p>
           </div>
           <div class="program-content_time">
-            <img src="{% static 'assets/alarm-outline.svg' %}" alt="" />
+            <img src="{% static 'assets/alarm-outline.svg' %}" title="Devagiri-campus-{{event.slug}}" alt="devagiri-campus-program-{{event.name}}" alt="" loading="lazy"/>
             <p>{{event.time}}</p>
           </div>
-          {% comment %} {% if event.created_by %}
+         {% if event.created_by %}
           <div class="program-content_conducted">
-            <p>{{event.created_by}}</p>
+            <p>{{event.created_by|slice:":8" }}</p>
           </div>
-          {% endif %} {% endcomment %}
+          {% endif %} 
         </div>
         <div data-aos="fade-up" class="program-content-body_main">
-          <h2>{{event.name}}</h2>
+          <h2>{{event.name|truncatewords:6}}</h2>
         </div>
       </div>
       <div data-aos="fade-up" class="program-content-cta">
-        <a href="{% url 'program-details' event.slug %}">
-          <img src="{% static 'assets/programs-cta-arrow.svg' %}" alt="" />
+        <a href="{% url 'program' event.slug %}">
+          <img src="{% static 'assets/programs-cta-arrow.svg' %}" title="Devagiri-campus-{{event.slug}}" alt="devagiri-campus-program-{{event.name}}" loading="lazy" />
         </a>
       </div>
     </div>
@@ -107,16 +107,16 @@
 {% endif %}
 
 <!-- campus  -->
-{% if explores %}
-<div id="" class="communities">
-  <div data-aos="fade-up" class="explore-heading">
+{% if communities %}
+<div id="communities" class="communities">
+  <div data-aos="fade-up" class="communities-heading">
     <h1>COMMUNITIES</h1>
   </div>
-  <div class="explore-infra-list">
+  <div class="communities-infra-list">
     {% for community in communities %}
-    <a href="{% url 'community-details' community.slug %}">
-      <div data-aos="fade-up" class="explore-infra">
-        <img src="/media/{{community.logo}}" alt="" />
+    <a href="{% url 'community' community.slug %}">
+      <div data-aos="fade-up" class="communities-infra">
+        <img src="/media/{{community.logo}}" title="{{community.slug}}-devagiri" alt="{{community.slug}}" loading="lazy" />
         <p>{{community.name}}</p>
       </div>
     </a>
@@ -135,9 +135,9 @@
   </div>
   <div class="fest-list">
     {% for fest in fests %}
-    <a href="{% url 'fest-details' fest.slug %}">
+    <a href="{% url 'fest' fest.slug %}">
       <div data-aos="fade-up" class="fest">
-        <img src="/media/{{fest.logo}}" alt="" />
+        <img src="/media/{{fest.logo}}" title="devagiri-college-{{fest.slug}}-fest" alt="{{fest.slug}}" loading="lazy" />
         <p>{{fest.name}}</p>
       </div>
     </a>
@@ -156,18 +156,18 @@
   </div>
   <div class="news-section">
     {% for news in newses  %}
-    <a href="{% url 'news-details' news.slug %}">
+    <a href="{% url 'news' news.slug %}">
       <div class="news-section-content">
         <div data-aos="fade-up" class="news-section-content_main">
-          <h1>{{news.title}}</h1>
+          <h2>{{news.title}}</h2>
           <div class="news-section-content_main-date">
-            <img src="{% static 'assets/calendar-outline.svg' %}" alt="" />
+            <img src="{% static 'assets/calendar-outline.svg' %}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy"/>
             <span>June, 2023, 6:07 pm</span>
           </div>
           <p>{{news.body|truncatewords:20}}</p>
         </div>
         <div data-aos="fade-up" class="news-section-content_img">
-          <img src="/media/{{news.image}}" alt="" />
+          <img src="/media/{{news.image}}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy" />
         </div>
       </div>
     </a>
@@ -185,9 +185,9 @@
   </div>
   <div class="explore-infra-list">
     {% for explore in explores %}
-    <a href="{% url 'explore-details' explore.slug %}">
+    <a href="{% url 'explore' explore.slug %}">
       <div data-aos="fade-up" class="explore-infra">
-        <img src="/media/{{explore.image}}" alt="" />
+        <img src="/media/{{explore.image}}" title="{{explore.slug}}" alt="{{explore.name}}" loading="lazy"/>
         <p>{{explore.name}}</p>
       </div>
     </a>
@@ -197,17 +197,17 @@
 {% endif %}
 
 
- <!-- communities  -->
+ <!-- clubs  -->
  {% if clubs %}
- <div class="communities">
-   <div data-aos="fade-up" class="communities-heading">
+ <div id="clubs" class="clubs">
+   <div data-aos="fade-up" class="clubs-heading">
      <h1>CLUBS</h1>
    </div>
-   <div data-aos="fade-up" class="communities-section">
+   <div data-aos="fade-up" class="clubs-section">
      {% for club in clubs  %}
-     <a href="{% url 'club-details' club.slug %}">
-       <div class="community">
-         <h1>{{club.name | upper}}</h1>
+     <a href="{% url 'club' club.slug %}">
+       <div class="club">
+         <h2>{{club.name | upper}}</h2>
        </div>
      </a>
      {% endfor %}

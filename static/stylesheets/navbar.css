@@ -130,10 +130,23 @@
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 426px) {
 
   .navbar {
-    padding: 1rem 1rem 0rem 1rem;
+    padding: 1rem 0.5rem 0rem 0.5rem;
+  }
+  .navbar-menu_container {
+    background:var(--third-color);
+    display: none;
+    text-align: end;
+    padding: 0.5rem 1rem;
+    color:var(--secondary);
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    min-width: 80px;
+    border-radius: 5px;
+    z-index: 5;
   }
 
 }

@@ -21,7 +21,7 @@ class Community(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
-        filename = f"{instance.slug}.{ext}"
+        filename = f"{instance.name}.{ext}"
         # Return the final file path
         return f"media/communities_logos/{filename}"
     
@@ -72,7 +72,7 @@ class Program(models.Model):
     time = models.TimeField(null=True)
     date = models.DateField(null=True)
     link = models.URLField(null=True,blank=True)
-    venue = models.CharField(max_length=200)
+    venue = models.CharField(max_length=200,null=True,blank=True)
     created_by = models.CharField(max_length=200,blank=True)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 

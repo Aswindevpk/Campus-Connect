@@ -93,14 +93,14 @@
     }
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 426px) {
     .carousel{
-      padding: 1rem 1rem;
+      padding: 1rem 0.5rem;
       /* height: 25.125rem; */
     }
-    .carousel-image{
+    /* .carousel-image{
       /* max-width: 100%; */
-    }
+
     .carousel-img {
       /* width: 100%; */
       max-width: 100%;

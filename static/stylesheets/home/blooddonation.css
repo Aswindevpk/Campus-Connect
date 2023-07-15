@@ -54,9 +54,9 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
   .blood-donation {
-    padding: 1rem 1rem;
+    padding: 1rem 0.5rem;
   }
   .blood-donation-heading h1 {
     font-size: 1.5rem;
