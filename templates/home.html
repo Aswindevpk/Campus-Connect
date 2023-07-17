@@ -164,7 +164,7 @@
             <img src="{% static 'assets/calendar-outline.svg' %}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy"/>
             <span>June, 2023, 6:07 pm</span>
           </div>
-          <p>{{news.body|truncatewords:20}}</p>
+          {{news.body|safe |truncatewords:20}}
         </div>
         <div data-aos="fade-up" class="news-section-content_img">
           <img src="/media/{{news.image}}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy" />

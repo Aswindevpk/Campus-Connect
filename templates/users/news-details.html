@@ -15,7 +15,7 @@
             <p>{{news.created}}</p>
         </div>
         <div class="news-page-content-details_para">
-            <p>{{news.body}}</p>
+            {{news.body | safe}}
         </div>
     </div>
     <div class="news-page-content-img">

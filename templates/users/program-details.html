@@ -2,6 +2,13 @@
 {% load static %}
 
 {% block content %}
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        content_css: '/path/to/custom.css',  // Replace with the path to your custom CSS file
+        // other configuration options...
+      });
+</script>
 <link rel="stylesheet" href="{% static 'stylesheets/users/program_details.css' %}">
 <div class="program-page-content">
     {% if program.created_by %}
@@ -20,17 +27,11 @@
             <p>Venue: {{program.venue}}</p>
         </div>
     </div>
+    {% autoescape off %}
     <div class="program-page-content_para">
-        <p>{{program.description}}</p>
+        {{program.description }}
     </div>
-    {% comment %} <div class="program-page-content-tc">
-        <h1>Terms & Conditions</h1>
-        <ul>
-            <li>If users abuse your website or mobile app in any way</li>
-            <li>If users can post content on your website or mobile app</li>
-            <li>If you sell products or services, you could cancel specific orders </li>
-        </ul>
-    </div> {% endcomment %}
+    {% endautoescape %}
     {% if program.link %}
     <div class="program-page-content-cta">
         {% comment %} <p>accepts Terms & Conditions</p> {% endcomment %}

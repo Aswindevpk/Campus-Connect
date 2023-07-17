@@ -11,6 +11,8 @@ from django.dispatch import receiver
 #for automatic slug creation
 from autoslug import AutoSlugField
 
+from tinymce.models import HTMLField
+
 
 
 
@@ -28,7 +30,7 @@ class Community(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
     about = models.TextField(blank=True)
-    description = models.TextField()
+    description = HTMLField(blank=True,default=None,null=True)
     logo=models.ImageField(upload_to=get_image_path, default=None,blank=True)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
@@ -39,7 +41,7 @@ class Clubs(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
     about = models.TextField(blank=True)
-    description = models.TextField()   
+    description = HTMLField(blank=True,default=None,null=True)   
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True) 
 
     def __str__(self):
@@ -56,8 +58,8 @@ class Fests(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name=models.CharField(max_length=200 ,null=True)
-    about = models.TextField(blank=True)
-    description = models.TextField()
+    about = models.TextField(blank=True,default=None,null=True)
+    description = HTMLField(blank=True,default=None,null=True)
     logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg')
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
@@ -68,13 +70,15 @@ class Fests(models.Model):
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = HTMLField(default=None,null=True)
+    # conditions = HTMLField(blank=True,default=None,null=True)
     time = models.TimeField(null=True)
     date = models.DateField(null=True)
     link = models.URLField(null=True,blank=True)
     venue = models.CharField(max_length=200,null=True,blank=True)
     created_by = models.CharField(max_length=200,blank=True)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
+
 
     def __str__(self):
         return self.name
@@ -90,7 +94,7 @@ class News(models.Model):
        
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
-    body = models.TextField()
+    body = HTMLField(default=None,null=True)
     created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=get_image_path)
     created_by = models.CharField(max_length=200,blank=True)
@@ -131,7 +135,7 @@ class Explore(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = HTMLField(blank=True,default=None,null=True)
     created_by = models.CharField(max_length=200)
     image = models.ImageField(upload_to=get_image_path)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
@@ -149,7 +153,7 @@ class Exploreimg(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to=get_image_path)
-    explore = models.ForeignKey(Explore,on_delete=models.CASCADE,default=uuid.uuid4,blank=True)
+    #explore = models.ForeignKey(Explore,on_delete=models.CASCADE,default=uuid.uuid4,blank=True)
 
     
 class Course(models.Model):

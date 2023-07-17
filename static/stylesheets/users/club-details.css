@@ -42,7 +42,10 @@
   line-height: normal;
 }
 
-.club-content-desc p {
+.club-content-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5;
   padding-top: 1rem;
   color: var(--third-color);
   font-size: 1rem;
@@ -50,6 +53,23 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.club-content-desc li {
+  color: white;
+  margin-left: 1.5rem;
+}
+.club-content-desc a {
+  color: var(--secondary-color);
+}
+.club-content-desc h1,
+.club-content-desc h2,
+.club-content-desc h3,
+.club-content-desc h4,
+.club-content-desc h5,
+.club-content-desc h6 {
+  padding-top: 1rem;
+  color: var(--third-color);
 }
 
 @media screen and (max-width: 1024px) {
@@ -106,6 +126,17 @@
     height: 5.5rem;
     border-radius: 5.5rem;
   }
+  .club-content-desc {
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+
+  .club-content-desc p {
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
 
   .club-content-head_main h1 {
     font-size: 1.5rem;
