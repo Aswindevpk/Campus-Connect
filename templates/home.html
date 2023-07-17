@@ -19,9 +19,9 @@
   <div data-aos="fade-up" class="carousel-image">
     {% for carousel in carousels %} 
       {% if carousel.news %}
-        <img class="carousel-img" onclick="gotoUrl('{% url 'news' carousel.news.id %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
+        <img class="carousel-img" onclick="gotoUrl('{% url 'news' carousel.news.slug %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% elif carousel.program %}
-      <img class="carousel-img" onclick="gotoUrl('{% url 'program' carousel.program.id %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
+      <img class="carousel-img" onclick="gotoUrl('{% url 'program' carousel.program.slug %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% else %}
       <img class="carousel-img" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% endif %}
@@ -164,7 +164,7 @@
             <img src="{% static 'assets/calendar-outline.svg' %}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy"/>
             <span>June, 2023, 6:07 pm</span>
           </div>
-          {{news.body|safe |truncatewords:20}}
+          {{news.body|safe |truncatewords:18}}
         </div>
         <div data-aos="fade-up" class="news-section-content_img">
           <img src="/media/{{news.image}}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy" />
