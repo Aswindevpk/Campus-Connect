@@ -145,6 +145,9 @@
   .news {
     padding: 1.5rem 0.5rem;
   }
+  .news-section{
+    gap :1rem
+  }
 
   .news-heading h1 {
     font-size: 1.2rem;
@@ -153,6 +156,7 @@
     padding-bottom: 0.7rem;
   }
   .news-section-content{
+    gap: 0.5rem;
     width: 100%;
   }
   .news-section-content_main h2 {
@@ -172,7 +176,7 @@
   }
   .news-section-content_main p {
     font-size: 0.75rem;
-    width: 100%;
+    width: 50vw;
     height: 100%;
   }
   .news-section-content_img {

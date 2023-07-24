@@ -15,17 +15,13 @@ from tinymce.models import HTMLField
 
 
 
-
-
-
-
 class Community(models.Model):
     def get_image_path(instance, filename):
         # Generate the filename using the id and extension from the original filename
         ext = filename.split('.')[-1]
         filename = f"{instance.name}.{ext}"
         # Return the final file path
-        return f"media/communities_logos/{filename}"
+        return f"communities_logos/{filename}"
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
@@ -54,7 +50,7 @@ class Fests(models.Model):
         ext = filename.split('.')[-1]
         filename = f"{instance.name}.{ext}"
         # Return the final file path
-        return f"media/fest_logos/{filename}"
+        return f"fest_logos/{filename}"
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name=models.CharField(max_length=200 ,null=True)
@@ -90,7 +86,7 @@ class News(models.Model):
         ext = filename.split('.')[-1]
         filename = f"{instance.title}.{ext}"
         # Return the final file path
-        return f"media/news_images/{filename}"
+        return f"news_images/{filename}"
        
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
@@ -111,7 +107,7 @@ class Carousel(models.Model):
         ext = filename.split('.')[-1]
         filename = f"{instance.title}.{ext}"
         # Return the final file path
-        return f"media/carousel_images/{filename}"
+        return f"carousel_images/{filename}"
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField( max_length=200)
@@ -131,7 +127,7 @@ class Explore(models.Model):
         ext = filename.split('.')[-1]
         filename = f"{instance.name}.{ext}"
         # Return the final file path
-        return f"media/explore_images/{filename}"
+        return f"explore_images/{filename}"
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
@@ -149,7 +145,7 @@ class Exploreimg(models.Model):
         ext = filename.split('.')[-1]
         filename = f"{instance.id}.{ext}"
         # Return the final file path
-        return f"media/explore_images/{filename}"
+        return f"explore_images/{filename}"
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to=get_image_path)
