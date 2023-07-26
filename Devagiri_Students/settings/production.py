@@ -1,7 +1,7 @@
 from .base import *
 
 
-with open(os.path.join(BASE_DIR,'secret_key.txt')) as f:
+with open("/home/iedc/Devagiri_campus/secret_key.txt") as f:
     SECRET_KEY = f.read().strip()
 
 DEBUG = False
