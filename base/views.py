@@ -5,6 +5,8 @@ from datetime import datetime
 
 
 
+
+
 def home(request):
     carousels = Carousel.objects.all()
     blood_req = Bloodreq.objects.all()

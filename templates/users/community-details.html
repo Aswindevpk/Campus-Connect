@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'stylesheets/home/programs.css' %}" />
 <div class="fest-content">
     <div class="fest-content-head">
-        <img src="/media/{{community.logo}}" alt="">
+        <img src="{{MEDIA_URL}}{{community.logo}}" alt="">
         <div class="fest-content-head_main">
             <h1>{{community.name}}</h1>
             <p>{{community.about |safe}}</p>

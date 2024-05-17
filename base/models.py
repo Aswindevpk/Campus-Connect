@@ -1,18 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 # for universal id 
 import uuid 
-
 import os
-
 # pre_delete to delete the files associated to a row when row is deleted
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
-
 #for automatic slug creation
 from autoslug import AutoSlugField
-
-from tinymce.models import HTMLField
-
+from django.contrib.auth.models import Group
+import boto3
+from django.conf import settings
 
 
 class Community(models.Model):
@@ -23,10 +21,21 @@ class Community(models.Model):
         # Return the final file path
         return f"communities_logos/{filename}"
     
+    def save(self,*args, **kwargs):
+        user = User.objects.filter(username=self.name).first()
+        if not user:
+            user = User.objects.create_user(username=self.name,password='pass')
+            group = Group.objects.get(name='community')
+            user.is_staff = True
+            user.groups.add(group)
+            user.save()
+        super().save(*args, **kwargs)
+
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
     about = models.TextField(blank=True)
-    description = HTMLField(blank=True,default=None,null=True)
+    description = models.TextField(blank=True,default=None,null=True)
     logo=models.ImageField(upload_to=get_image_path, default=None,blank=True)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
@@ -34,10 +43,20 @@ class Community(models.Model):
         return self.name
 
 class Clubs(models.Model):
+    def save(self,*args, **kwargs):
+        user = User.objects.filter(username=self.name).first()
+        if not user:
+            user = User.objects.create_user(username=self.name,password='pass')
+            group = Group.objects.get(name='community')
+            user.is_staff = True
+            user.groups.add(group)
+            user.save()
+        super().save(*args, **kwargs)
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=25)
     about = models.TextField(blank=True)
-    description = HTMLField(blank=True,default=None,null=True)   
+    description = models.TextField(blank=True,default=None,null=True)   
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True) 
 
     def __str__(self):
@@ -52,10 +71,20 @@ class Fests(models.Model):
         # Return the final file path
         return f"fest_logos/{filename}"
     
+    def save(self,*args, **kwargs):
+        user = User.objects.filter(username=self.name).first()
+        if not user:
+            user = User.objects.create_user(username=self.name,password='pass')
+            group = Group.objects.get(name='fest')
+            user.is_staff = True
+            user.groups.add(group)
+            user.save()
+        super().save(*args, **kwargs)
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name=models.CharField(max_length=200 ,null=True)
     about = models.TextField(blank=True,default=None,null=True)
-    description = HTMLField(blank=True,default=None,null=True)
+    description = models.TextField(blank=True,default=None,null=True)
     logo=models.ImageField(upload_to=get_image_path, default='default_image.jpg')
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
 
@@ -66,7 +95,7 @@ class Fests(models.Model):
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    description = HTMLField(default=None,null=True)
+    description = models.TextField(default=None,null=True)
     # conditions = HTMLField(blank=True,default=None,null=True)
     time = models.TimeField(null=True)
     date = models.DateField(null=True)
@@ -90,7 +119,7 @@ class News(models.Model):
        
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
-    body = HTMLField(default=None,null=True)
+    body = models.TextField(default=None,null=True)
     created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=get_image_path)
     created_by = models.CharField(max_length=200,blank=True)
@@ -131,7 +160,7 @@ class Explore(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    description = HTMLField(blank=True,default=None,null=True)
+    description = models.TextField(blank=True,default=None,null=True)
     created_by = models.CharField(max_length=200)
     image = models.ImageField(upload_to=get_image_path)
     slug = AutoSlugField(populate_from='name',unique=True,default=None,null=True)
@@ -206,11 +235,22 @@ def delete_image_file(sender, instance, **kwargs):
     # Check if the instance has an image file
     if instance.image:
         # Get the path to the image file
-        image_path = instance.image.path
-        print(image_path)
-        # Check if the file exists and delete it
-        if os.path.exists(image_path):
-            os.remove(image_path)
+        image_path = str(instance.image)
+
+        # Initialize AWS S3 client
+        s3 = boto3.client('s3',
+                          aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                          aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                          region_name=settings.AWS_S3_REGION_NAME)
+
+        # Get bucket name and key from the image path
+        bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+        
+        # Delete the file from S3
+        try:
+            s3.delete_object(Bucket=bucket_name, Key=image_path)
+        except Exception as e:
+            print(f"An error occurred while deleting file from S3: {e}")
 
 
 @receiver(pre_delete, sender=Fests)
@@ -219,7 +259,21 @@ def delete_image_file(sender, instance, **kwargs):
     # Check if the instance has an image file
     if instance.logo:
         # Get the path to the image file
-        image_path = instance.logo.path
-        # Check if the file exists and delete it
-        if os.path.exists(image_path):
-            os.remove(image_path)
+        image_path = str(instance.logo)
+
+        # Initialize AWS S3 client
+        s3 = boto3.client('s3',
+                          aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                          aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                          region_name=settings.AWS_S3_REGION_NAME)
+
+        # Get bucket name and key from the image path
+        bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+        
+        # Delete the file from S3
+        try:
+            s3.delete_object(Bucket=bucket_name, Key=image_path)
+        except Exception as e:
+            print(f"An error occurred while deleting file from S3: {e}")
+
+

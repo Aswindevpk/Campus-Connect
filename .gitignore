@@ -5,5 +5,7 @@
 __pycache__
 media/
 .venv
+venv
 /env
 secret_key.txt
+.env

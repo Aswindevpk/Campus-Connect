@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'stylesheets/users/fest-details.css' %}">
 <div class="fest-content">
     <div class="fest-content-head">
-        <img src="/media/{{fest.logo}}" alt="">
+        <img src="{{MEDIA_URL}}{{fest.logo}}" alt="">
         <div class="fest-content-head_main">
             <h1>{{fest.name}}</h1>
             <p>{{fest.about | safe}}</p>

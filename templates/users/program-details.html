@@ -2,13 +2,7 @@
 {% load static %}
 
 {% block content %}
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        content_css: '/path/to/custom.css',  // Replace with the path to your custom CSS file
-        // other configuration options...
-      });
-</script>
+
 <link rel="stylesheet" href="{% static 'stylesheets/users/program_details.css' %}">
 <div class="program-page-content">
     {% if program.created_by %}

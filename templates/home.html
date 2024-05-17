@@ -1,6 +1,5 @@
 {% extends 'main.html' %} 
 {% load static %} 
-
 {% block content %}
 
 
@@ -10,20 +9,20 @@
 <div class="carousel">
   <div class="carousel-heading">
     <div data-aos="fade-up" class="carousel-heading_h1">
-      <h1>Welcome to Devagiri Campus</h1>
+      <h1>Welcome to Campus Connect</h1>
     </div>
     <div data-aos="fade-up" class="carousel-heading_p">
-      <p>website for the Devagiri college students to hangout !</p>
+      <p>website for the Campus students to hangout !</p>
     </div>
   </div>
   <div data-aos="fade-up" class="carousel-image">
     {% for carousel in carousels %} 
       {% if carousel.news %}
-        <img class="carousel-img" onclick="gotoUrl('{% url 'news' carousel.news.slug %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
+        <img class="carousel-img" onclick="gotoUrl('{% url 'news' carousel.news.slug %}')" src="{{MEDIA_URL}}{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% elif carousel.program %}
-      <img class="carousel-img" onclick="gotoUrl('{% url 'program' carousel.program.slug %}')" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
+      <img class="carousel-img" onclick="gotoUrl('{% url 'program' carousel.program.slug %}')" src="{{MEDIA_URL}}{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% else %}
-      <img class="carousel-img" src="/media/{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
+      <img class="carousel-img" src="{{MEDIA_URL}}{{carousel.image}}" title="Devagiri college-{{carousel.title}}" alt="{{carousel.title}}" loading="eager" />
       {% endif %}
     {% endfor %}
   </div>
@@ -116,7 +115,7 @@
     {% for community in communities %}
     <a href="{% url 'community' community.slug %}">
       <div data-aos="fade-up" class="communities-infra">
-        <img src="/media/{{community.logo}}" title="{{community.slug}}-devagiri" alt="{{community.slug}}" loading="lazy" />
+        <img src="{{ MEDIA_URL }}{{community.logo}}" title="{{community.slug}}-devagiri" alt="{{community.slug}}" loading="lazy" />
         <p>{{community.name}}</p>
       </div>
     </a>
@@ -137,7 +136,7 @@
     {% for fest in fests %}
     <a href="{% url 'fest' fest.slug %}">
       <div data-aos="fade-up" class="fest">
-        <img src="/media/{{fest.logo}}" title="devagiri-college-{{fest.slug}}-fest" alt="{{fest.slug}}" loading="lazy" />
+        <img src="{{MEDIA_URL}}{{fest.logo}}" title="devagiri-college-{{fest.slug}}-fest" alt="{{fest.slug}}" loading="lazy" />
         <p>{{fest.name}}</p>
       </div>
     </a>
@@ -164,10 +163,12 @@
             <img src="{% static 'assets/calendar-outline.svg' %}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy"/>
             <span>June, 2023, 6:07 pm</span>
           </div>
-          {{news.body|safe |truncatewords:18}}
+          <p>
+            {{news.body|safe |truncatewords:18}}
+          </p>
         </div>
         <div data-aos="fade-up" class="news-section-content_img">
-          <img src="/media/{{news.image}}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy" />
+          <img src="{{ MEDIA_URL }}{{news.image}}" title="{{news.slug}}" alt="{{news.title}}" loading="lazy" />
         </div>
       </div>
     </a>
@@ -187,7 +188,7 @@
     {% for explore in explores %}
     <a href="{% url 'explore' explore.slug %}">
       <div data-aos="fade-up" class="explore-infra">
-        <img src="/media/{{explore.image}}" title="{{explore.slug}}" alt="{{explore.name}}" loading="lazy"/>
+        <img src="{{ MEDIA_URL }}{{MEDIA_URL}}{{explore.image}}" title="{{explore.slug}}" alt="{{explore.name}}" loading="lazy"/>
         <p>{{explore.name}}</p>
       </div>
     </a>
