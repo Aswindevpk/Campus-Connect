@@ -1,6 +1,7 @@
 from .base import *
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
 load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -18,7 +19,7 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),  
         'PASSWORD': os.getenv('DB_PASSWORD'), 
         'HOST': os.getenv('DB_HOST'),
-        'PORT': '5432',  # Default port for PostgreSQL
+        'PORT': '5432',  
     }
 }
 

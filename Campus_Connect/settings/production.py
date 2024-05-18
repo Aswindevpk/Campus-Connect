@@ -1,6 +1,5 @@
 from .base import *
 
-
 with open("/home/iedc/Campus_Connect/secret_key.txt") as f:
     SECRET_KEY = f.read().strip()
 
