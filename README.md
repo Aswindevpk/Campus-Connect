@@ -1,10 +1,13 @@
-![Campus Connect](screenshots/main.png)
+![Campus Connect](screenshots/logo.png)
 
 ## Overview
 
 Campus Connect is a dynamic and interactive platform designed exclusively for college students. It serves as a hub for sharing information about college news, communities, upcoming events, and urgent blood donation needs. The website is designed to foster community engagement, keep students informed, and provide a convenient way to participate in campus activities.
 
-Access the site : 
+Access the site :
+
+## Demo
+![Campus Connect](screenshots/user_inteface.gif)
 
 ## Features
 
@@ -55,4 +58,17 @@ Access the site :
     pip install -r requirements.txt 
     ```
 
+    
+3. **Make migration.**:
+
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+4. **Creating default groups and users.**:
+
+    ```bash
+    python manage.py default_group_user
+    ```
 
