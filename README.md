@@ -4,7 +4,7 @@
 
 Campus Connect is a dynamic and interactive platform designed exclusively for college students. It serves as a hub for sharing information about college news, communities, upcoming events, and urgent blood donation needs. The website is designed to foster community engagement, keep students informed, and provide a convenient way to participate in campus activities.
 
-Access the site :
+View Site : http://aswin.pythonanywhere.com/
 
 ## Demo
 ![Campus Connect](screenshots/user_inteface.gif)
