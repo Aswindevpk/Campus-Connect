@@ -15,11 +15,11 @@ if not SECRET_KEY:
 DEBUG = False
 
 # Explicitly define your domain variants. Never leave a wildcard '*' active here.
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['dev.aswindev.in','localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    # 'http://dev.aswindev.in',
-    # 'https://dev.aswindev.in', # Good to have for when you add SSL later
+    'http://dev.aswindev.in',
+    'https://dev.aswindev.in', # Good to have for when you add SSL later
 ]
 
 DATABASES = {
