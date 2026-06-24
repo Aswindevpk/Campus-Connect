@@ -17,6 +17,11 @@ DEBUG = False
 # Explicitly define your domain variants. Never leave a wildcard '*' active here.
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    # 'http://dev.aswindev.in',
+    # 'https://dev.aswindev.in', # Good to have for when you add SSL later
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

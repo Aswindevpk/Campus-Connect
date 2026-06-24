@@ -12,6 +12,7 @@ dependencies = [
     "django-autoslug==1.9.9",
     "django-cleanup==8.1.0",
     "django-storages==1.14.3",
+    "gunicorn>=26.0.0",
     "jmespath==1.0.1",
     "pillow==10.3.0",
     "psycopg2-binary==2.9.9",
