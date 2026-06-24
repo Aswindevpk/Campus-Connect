@@ -1,11 +1,38 @@
-# Django #
+# Django specific
 *.log
-*.pot
-*.pyc
-__pycache__
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 media/
-.venv
-venv
-/env
-secret_key.txt
+staticfiles/
+/static/             # Add this if you collectstatic locally into a root folder
+
+# Environment variables & Secrets
 .env
+secret_key.txt
+.secrets
+
+# Python & Caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pot
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build and distribution
+bin/
+include/
+lib/
+share/
+
+# IDEs and System files (Optional but highly recommended)
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
